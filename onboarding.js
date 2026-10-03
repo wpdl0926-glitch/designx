@@ -4,9 +4,10 @@
  const shapes=panel.querySelector('.onboarding-shapes');
  const cylinder=shapes.querySelector('.onboarding-cylinder');
  const resizeCylinder=()=>{
-  const width=shapes.getBoundingClientRect().width;if(!width)return;
+  const {width,height}=shapes.getBoundingClientRect();if(!width||!height)return;
   const end=495+50*1512/width;
-  cylinder.setAttribute('d',`M0 -15H${end}A506 506 0 0 1 ${end} 997H0Z`);
+  const radiusX=506*(height/982)/(width/1512);
+  cylinder.setAttribute('d',`M0 -15H${end}A${radiusX} 506 0 0 1 ${end} 997H0Z`);
  };
  new ResizeObserver(resizeCylinder).observe(shapes);resizeCylinder();
  const images=[...panel.querySelectorAll('.onboarding-image')];
