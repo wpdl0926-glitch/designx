@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design for X — 전시 아카이브</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" crossorigin>
+<link rel="stylesheet" href="star-posters.css?v=hover-only-options-49"><link rel="icon" href="images/design-x.svg">
+<link rel="stylesheet" href="onboarding.css?v=hover-only-options-16">
+</head><body class="is-onboarding">
+<main class="x-stage" aria-label="Design for X 졸업전시">
+<section class="poster-display" aria-label="선택한 전시 포스터" hidden>
+<a class="poster-link" target="_blank" rel="noopener noreferrer"><img class="selected-poster" alt=""><span class="poster-title"></span></a>
+</section>
+<section class="all-posters-display" aria-label="모든 전시 포스터" hidden><ul></ul></section>
+<section class="archive-display" aria-label="2021년부터 2009년 졸업전시 목록" hidden>
+      <ul>
+        <li><span class="item-year">2021</span><span class="item-title">Still Life</span></li>
+        <li><span class="item-year">2020</span><span class="item-title">비추지 않으면 보이지 않는 것들</span></li>
+        <li><span class="item-year">2019</span><span class="item-title">다 다르다</span></li>
+        <li><span class="item-year">2018</span><span class="item-title">누가 누구를</span></li>
+        <li><span class="item-year">2017</span><span class="item-title">이별의 재구성</span></li>
+        <li><span class="item-year">2016</span><span class="item-title">Design Teller</span></li>
+        <li><span class="item-year">2014</span><span class="item-title">KR-CODE</span></li>
+        <li><span class="item-year">2013</span><span class="item-title">자가발전</span></li>
+        <li><span class="item-year">2012</span><span class="item-title">희망하는 인간</span></li>
+        <li><span class="item-year">2011</span><span class="item-title">Human, Nature, Technology</span></li>
+        <li><span class="item-year">2010</span><span class="item-title">공명</span></li>
+        <li><span class="item-year">2009</span><span class="item-title">공존</span></li>
+      </ul>
+    </section>
+<nav class="year-stars" aria-label="전시 연도"><button class="year-star view-all-star" aria-label="VIEW ALL 모든 포스터 보기" aria-pressed="false" style="--star-color:#606060"><span class="star-shape"></span><span>VIEW ALL</span></button><button class="year-star" data-year="2026" style="--star-color:#d8d0b0" aria-label="2026 전시 포스터 보기" aria-pressed="false"><span class="star-shape"></span><span>2026</span></button>
+<button class="year-star" data-year="2025" style="--star-color:#85d8c0" aria-label="2025 전시 포스터 보기" aria-pressed="false"><span class="star-shape"></span><span>2025</span></button>
+<button class="year-star" data-year="2024" style="--star-color:#336cff" aria-label="2024 전시 포스터 보기" aria-pressed="false"><span class="star-shape"></span><span>2024</span></button>
+<button class="year-star" data-year="2023" style="--star-color:#606060" aria-label="2023 전시 포스터 보기" aria-pressed="false"><span class="star-shape"></span><span>2023</span></button>
+<button class="year-star" data-year="2022" style="--star-color:#e4bd69" aria-label="2022 전시 포스터 보기" aria-pressed="false"><span class="star-shape"></span><span>2022</span></button>
+<button class="more-stars" aria-label="2021년부터 2009년 졸업전시 목록 보기" aria-pressed="false"><span></span><span></span><span></span><span class="more-label">MORE</span></button></nav>
+<div class="department-logo">
+<a class="brand-link yonsei-link" href="https://yonsei.ac.kr" target="_blank" rel="noopener noreferrer" aria-label="연세대학교 공식 사이트"><img src="images/yonsei-symbol.svg" alt="연세대학교"><span class="brand-hint">go to yonsei</span></a>
+<span class="department-divider" aria-hidden="true"></span>
+<a class="brand-link id-link" href="https://yid.yonsei.ac.kr" target="_blank" rel="noopener noreferrer" aria-label="통합디자인학과 공식 사이트"><img src="images/id-symbol.svg" alt="ID 통합디자인학과"><span class="brand-hint">go to ID</span></a>
+</div>
+<img class="design-for-wordmark" src="images/dark-wordmark.svg" alt="Design for"><a class="system-link" href="#system" aria-label="about System 창 열기" aria-controls="about-window" aria-expanded="false"><span class="brand-hint">about System</span></a>
+<a class="about-x-link" href="#about" tabindex="-1">
+<canvas id="design-x-canvas" tabindex="0" role="button" aria-controls="about-window" aria-expanded="false" aria-label="about X 창 열기. 클릭 또는 Enter로 열고, 드래그 또는 방향키로 회전합니다."></canvas>
+<span class="about-x-hint" aria-hidden="true">about X</span>
+</a>
+<img class="x-fallback" src="images/design-x.svg" alt="X">
+
+<div class="external-sites">
+<button class="external-toggle" aria-label="외부 사이트 링크 열기" aria-expanded="false" aria-controls="external-links">
+<img src="images/external-arrow.svg" alt="" width="33" height="33">
+</button>
+<span class="external-sites-hint" aria-hidden="true">for more</span>
+
+</div>
+</main>
+<section id="about-window" class="about-category" role="dialog" aria-label="about X" hidden>
+<button class="about-back" aria-label="about X 창 닫기"><span aria-hidden="true">×</span></button>
+<div class="about-content"><h1>X = the challenges we choose to design for.</h1>
+<div class="about-body">
+<p lang="ko">Design for X는 학생들이 스스로 다양한 이슈와 주제를 발견하고,<br>통합적이고 다학제적인 접근을 통해 새로운 디자인 가능성을 그려보는 프로젝트입니다.<br>사회·문화·기술의 변화 속에서 디자인의 역할과 영역을 확장하며,<br>각자의 관점에서 미래를 위한 디자인을 제안합니다.</p>
+<p lang="en">Design for X is a project in which students identify diverse issues and themes,<br>envisioning new design possibilities through an integrated, interdisciplinary approach.<br>Amid shifts in society, culture, and technology, students expand the role and scope of design,<br>proposing designs for the future from their own perspectives.</p>
+</div></div>
+<div class="about-content system-content" hidden><h1>about System</h1></div>
+</section>
+<footer id="external-links" class="external-footer" aria-label="관련 외부 사이트" hidden>
+    <div class="footer-inner">
+      <div class="footer-address">
+        <p>© 2026. Department of Integrated Design, Yonsei University. All rights reserved.</p>
+        <p class="footer-meta"><span>02-2123-3092</span><span>(03722) 서울특별시 서대문구 연세로 50, 연세대학교 325동(삼성관)</span></p>
+      </div>
+
+      <div class="footer-bottom">
+        <nav class="footer-links">
+          <a href="https://yonsei.ac.kr" target="_blank" rel="noopener noreferrer">연세대학교</a>
+          <a href="https://che.yonsei.ac.kr" target="_blank" rel="noopener noreferrer">생활과학대학</a>
+          <a href="https://yid.yonsei.ac.kr" target="_blank" rel="noopener noreferrer">통합디자인학과</a>
+          <span>동문회</span>
+        </nav>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/yonsei_id_gradshow/" target="_blank" rel="noopener noreferrer" aria-label="인스타그램">
+            <img src="images/InstaIcon.svg" alt="인스타그램" width="24" height="24">
+          </a>
+          <a href="https://www.youtube.com/@yonsei_i.d" target="_blank" rel="noopener noreferrer" aria-label="유튜브">
+            <img src="images/YoutudeIcon.svg" alt="유튜브" width="24" height="24">
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+<section id="onboarding" class="onboarding-stage" aria-label="Design for X 졸업전시 온보딩">
+<img class="onboarding-image is-active" src="images/onboarding-music-poster.webp" alt="" fetchpriority=high>
+<img class="onboarding-image" src="images/onboarding-fashion.webp" alt="" loading=eager>
+<img class="onboarding-image" src="images/onboarding-textile.webp" alt="" loading=eager>
+<img class="onboarding-image" src="images/onboarding-fashion-meadow.webp" alt="" loading=eager>
+<img class="onboarding-image" src="images/onboarding-uprising-posters.webp" alt="" loading=eager>
+<div class="bottom-shade" aria-hidden="true"></div>
+<svg class="onboarding-shapes" viewBox="0 0 1512 982" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<path d="M0 -15H495A506 506 0 0 1 495 997H0Z"/>
+<rect x="1105" y="0" width="407" height="982"/>
+</svg>
+<img class="onboarding-wordmark" src="images/dark-wordmark.svg" alt="Design for"><a class="system-link" href="#system" aria-label="about System 창 열기" aria-controls="about-window" aria-expanded="false"><span class="brand-hint">about System</span></a>
+<a class="onboarding-entry onboarding-about-link" href="#about" aria-label="about X 창 열기" aria-controls="about-window" aria-expanded="false"><canvas id="onboarding-x-canvas" tabindex="0" role="button" aria-label="about X 창 열기. 드래그하면 X를 회전합니다."></canvas><img class="onboarding-x" src="images/design-x.svg" alt="X"><span class="onboarding-about-hint" aria-hidden="true">about X</span></a>
+<nav class="onboarding-stars" aria-label="졸업전시 메인으로 이동"><button class="onboarding-star onboarding-all" data-slide="6" aria-label="VIEW ALL 모든 포스터 보기"><span class="onboarding-star-shape"></span><span class="onboarding-year">VIEW ALL</span></button><button class="onboarding-star" data-slide="0" aria-label="2026 전시 포스터 보기" aria-pressed="true"><span class="onboarding-star-shape"></span><span class="onboarding-year">2026</span></button>
+<button class="onboarding-star" data-slide="1" aria-label="2025 전시 포스터 보기" aria-pressed="false"><span class="onboarding-star-shape"></span><span class="onboarding-year">2025</span></button>
+<button class="onboarding-star" data-slide="2" aria-label="2024 전시 포스터 보기" aria-pressed="false"><span class="onboarding-star-shape"></span><span class="onboarding-year">2024</span></button>
+<button class="onboarding-star" data-slide="3" aria-label="2023 전시 포스터 보기" aria-pressed="false"><span class="onboarding-star-shape"></span><span class="onboarding-year">2023</span></button>
+<button class="onboarding-star" data-slide="4" aria-label="2022 전시 포스터 보기" aria-pressed="false"><span class="onboarding-star-shape"></span><span class="onboarding-year">2022</span></button><a class="onboarding-more" href="#main" aria-label="2021년부터 2009년 졸업전시 목록 보기"><span></span><span></span><span></span><span class="more-label">MORE</span></a></nav>
+</section>
+<script src="black-x.js?v=about-window-6" defer></script>
+<script src="star-posters.js?v=view-all-18" defer></script>
+<script src="external-sites.js?v=hint-close-3" defer></script>
+<script src="onboarding-x.js?v=inline-rotation-2" defer></script>
+<script src="about-category.js?v=system-panel-6" defer></script>
+<script src="onboarding.js?v=view-all-8" defer></script>
+
+</body></html>

@@ -1,0 +1,157 @@
+[
+  {
+    "path": ".gitignore",
+    "size": 20,
+    "sha256": "2bdfdb216230559f36faf46907142b8afd478401150f810e1ddaf9a4fdcc656c"
+  },
+  {
+    "path": ".nojekyll",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "README.md",
+    "size": 874,
+    "sha256": "5d8e569c89929407cd64a196dcca0abc1e82278b21a33acb2d7ae67d3b1e7423"
+  },
+  {
+    "path": "about-category.js",
+    "size": 2919,
+    "sha256": "8bfaa10d053d5556c00cdfd4e7a1740253cab32d84f84c4e6b010af1815959b2"
+  },
+  {
+    "path": "about.html",
+    "size": 267,
+    "sha256": "226fcffbee5fb4e677502c3a6a75134302f13570b4200eb21113b87ed376678b"
+  },
+  {
+    "path": "black-x.js",
+    "size": 9030,
+    "sha256": "2400bc7953165b895017f689370b191d25d66abb59e68861eb13b238fcd2a6a3"
+  },
+  {
+    "path": "external-sites.js",
+    "size": 1049,
+    "sha256": "e7a66af93682eaa06cb52d42d3fbe5dae2a9ab30c1f70f6e3e64ac65e8d1c30e"
+  },
+  {
+    "path": "images/2022-01.png",
+    "size": 606933,
+    "sha256": "ec03067db014cd237ed98d7998d296cf4fd8ccaf190acd0023cc03b4d5a27d41"
+  },
+  {
+    "path": "images/2023-01.png",
+    "size": 6717171,
+    "sha256": "5e592d8189782163178aa95c21c25715d0b467d5eec640612fe0404f6b28bc21"
+  },
+  {
+    "path": "images/2024-01.jpg",
+    "size": 272515,
+    "sha256": "1f47fc93cdb1025e7696c776f4d6045a1f6e9ec3f56c6b8bbb355aa326a7e959"
+  },
+  {
+    "path": "images/2025-01.jpeg",
+    "size": 5671941,
+    "sha256": "d1f351928590791e123c7559ec7b94808975476b974f6c9a8d69ff9e11ecedc3"
+  },
+  {
+    "path": "images/2026-01.jpg",
+    "size": 207819,
+    "sha256": "5510647cb4e83ee19255686cae6fa94eba9d1ab7a2c91fcbc00f802ba4155709"
+  },
+  {
+    "path": "images/InstaIcon.svg",
+    "size": 3208,
+    "sha256": "53c360613d927bd89a70f6fc1366057365a8e2dd4498db9cca518cd4ef2aa1b7"
+  },
+  {
+    "path": "images/YoutudeIcon.svg",
+    "size": 991,
+    "sha256": "4f06529f0285365957347d7c75261773bc06794c50a8054511fcefa8fb7c7c2e"
+  },
+  {
+    "path": "images/dark-wordmark.svg",
+    "size": 9252,
+    "sha256": "889ebea8684872533962fc5454cbf3ba722eea7af7436a7600382623a520feac"
+  },
+  {
+    "path": "images/design-x.svg",
+    "size": 692,
+    "sha256": "18055dfeea9d392f2679966ea6e036f2995ce93d533e6efb46737fedc73e3956"
+  },
+  {
+    "path": "images/external-arrow.svg",
+    "size": 410,
+    "sha256": "a90197960d369604c42bb8f82bae454c48b01080a3a76c3d739d31a67da8b93c"
+  },
+  {
+    "path": "images/id-symbol.svg",
+    "size": 30393,
+    "sha256": "7fe34930f4ee41af56432a0cc8d29cb2abb1c05a607de7da3f92e3890322beca"
+  },
+  {
+    "path": "images/onboarding-fashion-meadow.webp",
+    "size": 545416,
+    "sha256": "967cefc6d3f09bdaa0d52e5ee16c005edf7e6f35095d8d50108bb07dbc7aa322"
+  },
+  {
+    "path": "images/onboarding-fashion.webp",
+    "size": 241708,
+    "sha256": "9156a0dc0ad9bb2907ccd03496dc1dc0a4361084e6cbb45129ec4323b4568db9"
+  },
+  {
+    "path": "images/onboarding-music-poster.webp",
+    "size": 165824,
+    "sha256": "16e16a663d7d56e2e46fecc9568062833703687d110dd648fb9210130a049a68"
+  },
+  {
+    "path": "images/onboarding-textile.webp",
+    "size": 571526,
+    "sha256": "c8504298860a657fcdb86f64d9dbb75e2ce875ccbc41db6ec8116d3dfe1e89d1"
+  },
+  {
+    "path": "images/onboarding-uprising-posters.webp",
+    "size": 584810,
+    "sha256": "d02af993571d19800d25db95e5e8848815f60de7e08acdc9b122cfd5c4b8f83c"
+  },
+  {
+    "path": "images/yonsei-symbol.svg",
+    "size": 30388,
+    "sha256": "d7f7f20b5198a8ddbdb108abe6da3e9985b08c2cec16f7dc9c2be5d0cf77f875"
+  },
+  {
+    "path": "index.html",
+    "size": 11281,
+    "sha256": "d50f547614c1d409f0d7f9b805691676cec7a81f07cd1e5ad1ccbd6ce293ed5e"
+  },
+  {
+    "path": "onboarding-x.js",
+    "size": 9054,
+    "sha256": "500f5f28cdd579da7e859c0e02bdf9f10c75de41474bc4f7edd9ca9df407725f"
+  },
+  {
+    "path": "onboarding.css",
+    "size": 5999,
+    "sha256": "14efc64bb388125c713984e70f025ec20842d455ae8a30d89ee103671840d595"
+  },
+  {
+    "path": "onboarding.html",
+    "size": 215,
+    "sha256": "0d9b5d7423a1c87dd072984e5c3b741075face481020927518df612abb9e3459"
+  },
+  {
+    "path": "onboarding.js",
+    "size": 4658,
+    "sha256": "d6ccfce533e8bd7d1327a7bad20cbaa188ccb1bdd80d50703a0ee10efab036c7"
+  },
+  {
+    "path": "star-posters.css",
+    "size": 16312,
+    "sha256": "255e1a02fb30ca452378e86fe268f8faaefd67bb81bdc5179e1dfceaeb0f2d4b"
+  },
+  {
+    "path": "star-posters.js",
+    "size": 7780,
+    "sha256": "958a41b07b6547173b56ea5c8e0d12e0086a7b2d86a80f13a7fc651272a2ee06"
+  }
+]

@@ -1,0 +1,181 @@
+* { box-sizing:border-box; }
+html,body { margin:0; width:100%; min-height:100%; background:#ffffff; font-family:Arial,sans-serif; }
+.x-stage { position:relative; width:100%; height:100svh; overflow:hidden; background:#ffffff; }
+.design-for-wordmark { position:absolute; inset:0; top:3.6%; width:100%; height:100%; pointer-events:none; }
+.department-logo { position:absolute; left:4.3%; bottom:7.6%; width:13.5%; height:auto; }
+#design-x-canvas { position:absolute; left:68.48%; top:87.87%; transform:translate(-50%,-50%); width:14vw; height:14vw; display:block; cursor:grab; touch-action:none; }
+#design-x-canvas.is-dragging { cursor:grabbing; }
+#design-x-canvas[hidden] { display:none; }
+#design-x-canvas:focus-visible { outline:1px solid #001d5e; outline-offset:-4px; }
+.x-fallback { position:absolute; left:63.88%; top:80.69%; width:9.2%; height:14.4%; }
+.x-stage.is-ready .x-fallback { display:none; }
+.year-stars { position:absolute; left:50.6%; top:72.7%; transform:translateX(calc(-50% - 50px)); display:flex; align-items:flex-start; gap:1.3vw; z-index:2; }
+.year-star { font-family:"Avenir Next",Avenir,sans-serif; border:0; padding:0; background:none; color:var(--star-color); display:flex; flex-direction:column; align-items:center; gap:.5vh; cursor:pointer; font-size:clamp(10px,.95vw,15px); }
+.star-shape { display:block; width:2.4vw; height:2.4vw; min-width:26px; min-height:26px; background:var(--star-color); mask:url('images/design-x.svg') center/contain no-repeat; -webkit-mask:url('images/design-x.svg') center/contain no-repeat; transition:transform .18s; }
+.year-star:hover .star-shape,.year-star[aria-pressed="true"] .star-shape { transform:scale(1.13); }
+.year-star:focus-visible { outline:1px solid #001d5e; outline-offset:6px; }
+.more-stars { color:#555; font-size:1.65vw; line-height:2.4vw; letter-spacing:.03em; }
+.poster-display { position:absolute; left:50%; top:calc(35% + 40px); transform:translate(-50%,-50%); height:54vh; max-width:78vw; z-index:3; }
+.poster-display[hidden] { display:none; }
+.selected-poster { display:block; height:100%; max-width:78vw; object-fit:contain; }
+@media(max-width:650px) {
+ .department-logo { width:23%; left:5%; bottom:5%; }
+ .year-stars { top:70%; left:51%; gap:3vw; }
+ .more-stars { font-size:20px; line-height:26px; }
+ .poster-display { height:50vh; top:calc(34% + 40px); }
+}
+
+.more-stars { display:flex; gap:3px; align-items:center; padding:0; height:2.4vw; min-height:26px; border:0; background:none; cursor:pointer; }
+.more-stars span:not(.more-label) { display:block; width:9px; height:9px; background:#555; mask:url('images/design-x.svg') center/contain no-repeat; -webkit-mask:url('images/design-x.svg') center/contain no-repeat; }
+.more-stars[aria-pressed="true"] span:not(.more-label) { animation:archive-star-color 2.4s ease-in-out infinite; }
+.more-stars span:not(.more-label):nth-child(2) { animation-delay:-.8s; }
+.more-stars span:not(.more-label):nth-child(3) { animation-delay:-1.6s; }
+.more-stars:focus-visible { outline:1px solid #001d5e; outline-offset:6px; }
+@keyframes archive-star-color { 0%,100% { background:#336cff; } 33% { background:#85d8c0; } 66% { background:#e4bd69; } }
+.archive-display { position:absolute; left:50%; top:calc(35% + 40px); transform:translate(-50%,-50%); width:min(440px,70vw); max-height:54vh; overflow:auto; }
+.archive-display[hidden] { display:none; }
+.archive-display ul { list-style:none; padding:0; margin:0; }
+.archive-display li { display:flex; align-items:baseline; gap:26px; padding:9px 0; border-bottom:1px solid #ededed; font-size:14px; line-height:1.3; color:#222; }
+.archive-display .item-year { color:#999; font-size:12px; min-width:32px; }
+@media(max-width:650px) { .archive-display { top:calc(34% + 40px); max-height:50vh; } .archive-display li { font-size:12px; gap:16px; padding:8px 0; } }
+@media(prefers-reduced-motion:reduce) { .more-stars[aria-pressed="true"] span:not(.more-label) { animation:none; background:#336cff; } }
+
+/* Keep only the selected year's accent while browsing an exhibition. */
+.year-stars.has-selection .year-star:not([aria-pressed="true"]) { color:#a0a0a0; }
+.year-stars.has-selection .year-star:not([aria-pressed="true"]) .star-shape { background:#a0a0a0; }
+.more-stars span:not(.more-label) { background:#a0a0a0; }
+.more-stars[aria-pressed="true"] span:not(.more-label) { animation:none; background:#000000; }
+
+ .year-star > span:last-child { visibility:hidden; opacity:0; transform:translateY(6px); transition:opacity .2s ease,transform .24s cubic-bezier(.22,1,.36,1),visibility 0s linear .24s; }
+.year-star:hover > span:last-child,.year-star:focus-visible > span:last-child,.year-star[data-year][aria-pressed="true"] > span:last-child { visibility:visible; opacity:1; transform:translateY(0); transition-delay:0s; }
+@media(prefers-reduced-motion:reduce) { .year-star > span:last-child { transition:none; transform:none; } }
+
+.external-sites { position:absolute; right:3.25%; bottom:7.6%; z-index:10; color:#001d5e; }
+.external-toggle { display:block; width:33px; height:33px; padding:0; border:0; background:transparent; color:inherit; cursor:pointer; }
+.external-toggle svg { display:block; width:100%; height:100%; }
+.external-toggle:focus-visible { outline:1px solid currentColor; outline-offset:7px; }
+
+.external-toggle img { display:block; width:100%; height:100%; transition:transform .26s ease,opacity .18s ease; }
+.external-toggle[aria-expanded="true"] img { transform:scale(-1,-1); }
+.x-stage { height:100svh; transform:translateY(calc(-1 * var(--external-footer-height,0px))); transition:transform .26s ease; }
+.external-footer { position:fixed; bottom:0; left:0; width:100%; z-index:20; background:#f4f4f6; }
+.external-footer[hidden] { display:none; }
+.external-footer .footer-inner { max-width:1440px; margin:0 auto; padding:0 240px 32px; display:flex; flex-direction:column; align-items:flex-start; }
+.footer-address { font-size:12px; color:#9898a2; display:flex; flex-direction:column; gap:4px; padding-top:24px; }
+.footer-address p { margin:0; line-height:1.5; }
+.footer-meta { display:flex; align-items:center; }
+.footer-meta span + span::before { content:''; display:inline-block; width:1px; height:.8em; background:#dddde2; margin:0 8px; vertical-align:middle; }
+.footer-bottom { width:100%; display:flex; justify-content:space-between; align-items:flex-end; }
+.footer-links { display:flex; align-items:center; }
+.footer-links a,.footer-links span { color:#57575f; font-size:12px; font-weight:400; text-decoration:none; }
+.footer-links > * + *::before { content:''; display:inline-block; width:1px; height:.8em; background:#dddde2; margin:0 16px; vertical-align:middle; }
+.footer-links a:hover { color:#27272b; }
+.footer-social { display:flex; gap:12px; align-items:center; }
+.footer-social img { display:block; }
+@media(max-width:960px) {
+ .external-footer .footer-inner { padding-left:120px; padding-right:120px; }
+ .footer-meta { flex-direction:column; align-items:flex-start; gap:4px; }
+ .footer-meta span + span::before { display:none; }
+}
+@media(max-width:720px) {
+ .external-footer .footer-inner { padding-left:24px; padding-right:24px; padding-bottom:20px; }
+ .footer-bottom { flex-direction:column; align-items:flex-start; gap:12px; }
+ .footer-links { padding-top:8px; }
+ .footer-links > * + *::before { margin:0 10px; }
+}
+@media(max-width:650px) { .external-sites { right:5%; bottom:5%; } .external-toggle { width:28px; height:28px; } }
+@media(prefers-reduced-motion:reduce) { .external-toggle img,.x-stage { transition:none; } }
+
+body { overflow:hidden; }
+
+.about-x-hint { position:absolute; left:72.8%; top:83.4%; transform:translateY(-50%); font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; color:#606060; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .18s ease; white-space:nowrap; }
+#design-x-canvas:hover ~ .about-x-hint,#design-x-canvas:focus-visible ~ .about-x-hint { opacity:1; visibility:visible; }
+#design-x-canvas { cursor:pointer; }
+
+.about-x-link { display:contents; }
+
+/* About is a full-height translucent bar starting at the rotating X center. */
+.about-category { position:fixed; left:68.48%; right:0; top:0; bottom:0; z-index:60; background:rgba(255,255,255,.5); }
+.about-category[hidden] { display:none; }
+.about-back { position:absolute; right:48px; top:64px; width:26px; height:26px; border:0; padding:0; background:transparent; color:#000; font:16.5px/1 Arial,sans-serif; cursor:pointer; display:grid; place-items:center; }
+.about-back:focus-visible { outline:2px solid #336cff; outline-offset:2px; }
+.about-content { position:static; width:100%; padding:130px 48px 38px; }
+.about-content h1 { font-family:"Avenir Next",Avenir,sans-serif; font-size:30px; font-weight:500; letter-spacing:normal; margin:0 0 24px; }
+.about-content p { margin:0; }
+.about-content .about-body p { font-family:Pretendard,sans-serif; font-size:9.75pt; font-weight:500; letter-spacing:-.02em; line-height:1.65; color:#111; }
+.about-body p + p { margin-top:21px; }
+.about-content .about-body p[lang="en"] { font-weight:400; }
+@media(max-width:650px) { .about-category { left:35%; } .about-content { padding:120px 32px 28px; } .about-back { right:32px; top:60px; } } }
+
+@view-transition { navigation:auto; }
+::view-transition-old(root),::view-transition-new(root) { animation-duration:700ms; animation-timing-function:ease-in-out; }
+@media(prefers-reduced-motion:reduce) { ::view-transition-old(root),::view-transition-new(root) { animation-duration:0s; } }
+
+.about-category,.about-category h1,.about-category .about-body p,.about-category .about-back { color:#000000; }
+body.is-onboarding .about-category,body.is-onboarding .about-category h1,body.is-onboarding .about-category .about-body p,body.is-onboarding .about-category .about-back { color:#ffffff; }
+
+.external-toggle:hover img,.external-toggle:focus-visible img { opacity:.6; }
+.external-sites-hint { position:absolute; right:0; bottom:calc(100% + 8px); font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; color:#606060; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .18s ease; white-space:nowrap; }
+.external-toggle:hover ~ .external-sites-hint,.external-toggle:focus-visible ~ .external-sites-hint { opacity:1; visibility:visible; }
+
+/* Align the year group with the centered poster’s left edge. */
+.year-stars { left:calc(50% - var(--poster-half-width, min(19.096875vh, 39vw))); transform:none; }
+@media(max-width:650px) { .year-stars { left:calc(50% - var(--poster-half-width, min(17.682292vh, 39vw))); } }
+
+/* Keep every exhibition on the same horizontal frame, preserving image ratios. */
+.poster-display { width:min(38.19375vh, 78vw); height:auto; }
+.selected-poster { width:100%; height:auto; }
+.year-stars { left:calc(50% - min(19.096875vh, 39vw)); }
+@media(max-width:650px) { .poster-display { width:min(35.364584vh, 78vw); height:auto; } .year-stars { left:calc(50% - min(17.682292vh, 39vw)); } }
+
+/* Separate logo targets retain the original artwork coordinates. */
+.department-logo { aspect-ratio:664.91 / 130.39; }
+.brand-link { position:absolute; top:0; height:100%; color:#001d5e; text-decoration:none; }
+.yonsei-link { left:0; width:21.807462%; }
+.id-link { left:28.5753%; width:71.4247%; }
+.brand-link img { width:100%; height:100%; display:block; transition:transform .22s ease,opacity .22s ease; }
+.department-divider { position:absolute; left:23.974673%; top:0; width:.682799%; height:100%; background:#001d5e; }
+.brand-hint { position:absolute; left:0; bottom:calc(100% + 10px); font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; line-height:1.3; white-space:nowrap; color:#606060; opacity:0; visibility:hidden; transform:translateY(4px); transition:opacity .2s ease,transform .2s ease; pointer-events:none; }
+.brand-link:hover img,.brand-link:focus-visible img { transform:translateY(-2px); opacity:.75; }
+.brand-link:hover .brand-hint,.brand-link:focus-visible .brand-hint,.system-link:hover .brand-hint,.system-link:focus-visible .brand-hint { opacity:1; visibility:visible; transform:translateY(0); }
+.system-link { position:absolute; left:26.85%; top:83.5%; width:35.5%; height:10.5%; z-index:4; cursor:pointer; }
+.design-for-wordmark,.onboarding-wordmark { transition:opacity .22s ease; }
+.x-stage:has(.system-link:hover) .design-for-wordmark,.x-stage:has(.system-link:focus-visible) .design-for-wordmark,.onboarding-stage:has(.system-link:hover) .onboarding-wordmark,.onboarding-stage:has(.system-link:focus-visible) .onboarding-wordmark { opacity:.75; }
+.onboarding-stage .system-link .brand-hint { color:#fff; }
+.system-content[hidden],.about-content[hidden] { display:none; }
+@media(prefers-reduced-motion:reduce) { .brand-link img,.brand-hint,.design-for-wordmark,.onboarding-wordmark { transition:none; } }
+
+.poster-link { position:relative; display:block; color:#000; text-decoration:none; cursor:pointer; }
+.poster-title { position:absolute; left:calc(100% + 24px); top:auto; bottom:0; width:260px; max-width:calc(50vw - 19.096875vh - 40px); font-family:"Avenir Next",Avenir,sans-serif; font-size:16px; font-weight:500; line-height:1.5; opacity:0; visibility:hidden; transform:translateX(8px); transition:opacity .28s ease,transform .35s cubic-bezier(.22,1,.36,1),visibility 0s linear .35s; pointer-events:none; }
+.poster-link:hover .poster-title,.poster-link:focus-visible .poster-title { opacity:1; visibility:visible; transform:translateX(0); transition-delay:0s; }
+.poster-link:focus-visible { outline:1px solid #001d5e; outline-offset:5px; }
+@media(max-width:650px) { .poster-title { left:calc(100% + 10px); max-width:calc(50vw - min(17.682292vh,39vw) - 16px); font-size:11px; overflow-wrap:anywhere; } }
+@media(prefers-reduced-motion:reduce) { .poster-title { transition:none; transform:translateX(0); } }
+
+.poster-link .selected-poster { transition:opacity .22s ease; }
+.poster-link:hover .selected-poster,.poster-link:focus-visible .selected-poster { opacity:.8; }
+.poster-cursor-hint { position:fixed; left:0; top:0; z-index:70; font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; line-height:1.3; color:#000; white-space:nowrap; pointer-events:none; opacity:0; visibility:hidden; transition:opacity .16s ease; }
+.poster-cursor-hint.is-visible { opacity:1; visibility:visible; }
+@media(prefers-reduced-motion:reduce) { .poster-link .selected-poster,.poster-cursor-hint { transition:none; } }
+
+/* A blurred white copy adds a 3px halo around the cursor label. */
+.poster-cursor-hint { isolation:isolate; }
+.poster-cursor-hint::before { content:'go to site'; position:absolute; inset:0; z-index:-1; color:#fff; -webkit-text-stroke:6px #fff; opacity:.4; filter:blur(8px); pointer-events:none; }
+
+/* Center the complete year-star group in both screen categories. */
+.year-stars,.onboarding-stars { left:50%; transform:translateX(-50%); }
+
+.view-all-star,.onboarding-all { position:relative; width:1.4vw; min-width:18px; padding-top:.5vw; }
+.view-all-star .star-shape,.onboarding-all .onboarding-star-shape { width:1.4vw; height:1.4vw; min-width:18px; min-height:18px; }
+.view-all-star > span:last-child,.onboarding-all .onboarding-year { position:absolute; top:calc(2.4vw + .5vh); white-space:nowrap; }
+.all-posters-display { position:absolute; left:50%; top:calc(35% + 40px); width:min(1100px,90vw); transform:translate(-50%,-50%); z-index:3; }
+.all-posters-display[hidden] { display:none; }
+.all-posters-display ul { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); align-items:center; gap:20px; list-style:none; margin:0; padding:0; }
+.all-poster-link { display:block; }
+.all-poster-link img { display:block; width:100%; height:auto; max-height:36vh; object-fit:contain; transition:opacity .22s ease; }
+.all-poster-link:hover img,.all-poster-link:focus-visible img { opacity:.8; }
+.all-poster-link:focus-visible { outline:1px solid #001d5e; outline-offset:5px; }
+@media(max-width:650px) { .all-posters-display ul { gap:8px; } .view-all-star,.onboarding-all { padding-top:4px; } .view-all-star > span:last-child,.onboarding-all .onboarding-year { top:calc(26px + .5vh); } }
+
+/* Uniform thumbnail frames keep the exhibition overview aligned. */
+.all-poster-link img { width:100%; height:auto; aspect-ratio:1358 / 1920; max-height:none; object-fit:cover; }

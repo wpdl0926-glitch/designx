@@ -1,0 +1,63 @@
+/* Onboarding and the exhibition live in one document. */
+.onboarding-stage { position:fixed; inset:0; width:100%; overflow:clip; cursor:pointer; background:#fff; z-index:50; }
+.onboarding-stage[hidden] { display:none; }
+body.is-onboarding .x-stage,body.is-onboarding .external-footer { visibility:hidden; pointer-events:none; }
+.onboarding-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; opacity:0; transition:opacity 1.2s ease; }
+.onboarding-image.is-active { opacity:1; }
+.bottom-shade { position:absolute; inset:auto -120px -120px; height:70%; background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.06) 40%,rgba(0,0,0,.2) 85%); filter:blur(70px); pointer-events:none; }
+.onboarding-wordmark { position:absolute; inset:0; top:3.6%; width:100%; height:100%; filter:brightness(0) invert(1); pointer-events:none; }
+.onboarding-entry { display:contents; }
+.onboarding-x { position:absolute; left:63.88%; top:80.69%; width:9.2%; height:14.4%; object-fit:contain; filter:brightness(0) invert(1); }
+.onboarding-stars { position:absolute; left:50.6%; top:72.7%; transform:translateX(calc(-50% - 50px)); display:flex; align-items:center; gap:1.3vw; }
+.onboarding-star,.onboarding-more { border:0; padding:0; background:none; cursor:pointer; display:flex; align-items:center; }
+.onboarding-star-shape { display:block; width:2.4vw; height:2.4vw; min-width:26px; min-height:26px; background:#fff; mask:url('images/design-x.svg') center/contain no-repeat; -webkit-mask:url('images/design-x.svg') center/contain no-repeat; }
+.onboarding-star:focus-visible,.onboarding-more:focus-visible { outline:1px solid #fff; outline-offset:6px; }
+.onboarding-more { gap:3px; }
+.onboarding-more span:not(.more-label) { width:9px; height:9px; background:#fff; mask:url('images/design-x.svg') center/contain no-repeat; -webkit-mask:url('images/design-x.svg') center/contain no-repeat; }
+@media(max-width:650px) { .onboarding-stars { left:51%; top:70%; gap:3vw; } }
+@media(prefers-reduced-motion:reduce) { .onboarding-image { transition:none; } }
+
+.onboarding-about-hint { position:absolute; left:72.8%; top:83.4%; transform:translateY(-50%); font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; color:#fff; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .18s ease; white-space:nowrap; }
+.onboarding-about-link:hover .onboarding-about-hint,.onboarding-about-link:focus-visible .onboarding-about-hint { opacity:1; visibility:visible; }
+
+#onboarding-x-canvas { position:absolute; left:68.48%; top:87.87%; transform:translate(-50%,-50%); width:14vw; height:14vw; display:block; cursor:pointer; touch-action:none; }
+#onboarding-x-canvas[hidden] { display:none; }
+#onboarding-x-canvas.is-dragging { cursor:grabbing; }
+#onboarding-x-canvas:focus-visible { outline:1px solid #fff; outline-offset:-4px; }
+.onboarding-stage.is-ready .onboarding-x { display:none; }
+#onboarding-x-canvas:hover ~ .onboarding-about-hint,#onboarding-x-canvas:focus-visible ~ .onboarding-about-hint { opacity:1; visibility:visible; }
+
+.onboarding-shapes { position:absolute; inset:0; width:100%; height:100%; fill:#000000; opacity:.3; pointer-events:none; z-index:2; }
+
+.onboarding-wordmark,.onboarding-x,#onboarding-x-canvas,.onboarding-stars,.onboarding-about-hint { z-index:3; }
+
+/* Shared viewport and logo coordinates prevent focus from shifting one screen. */
+.x-stage { height:100dvh; overflow:clip; }
+.design-for-wordmark,.onboarding-wordmark { position:absolute; inset:0; top:3.6%; width:100%; height:100%; }
+#design-x-canvas,#onboarding-x-canvas { position:absolute; left:68.48%; top:87.87%; transform:translate(-50%,-50%); width:14vw; height:14vw; }
+
+.onboarding-stars { align-items:flex-start; }
+.onboarding-star { flex-direction:column; gap:.5vh; color:#fff; font-family:"Avenir Next",Avenir,sans-serif; font-size:clamp(10px,.95vw,15px); }
+.onboarding-more { height:2.4vw; min-height:26px; }
+.onboarding-year { color:#fff; visibility:hidden; opacity:0; transform:translateY(6px); transition:opacity .2s ease,transform .24s cubic-bezier(.22,1,.36,1),visibility 0s linear .24s; }
+.onboarding-star:hover .onboarding-year,.onboarding-star:focus-visible .onboarding-year { visibility:visible; opacity:1; transform:translateY(0); transition-delay:0s; }
+@media(prefers-reduced-motion:reduce) { .onboarding-year { transition:none; transform:none; } }
+
+/* Align the year group with the centered poster’s left edge. */
+.onboarding-stars { left:calc(50% - min(19.096875vh, 39vw)); transform:none; }
+@media(max-width:650px) { .onboarding-stars { left:calc(50% - min(17.682292vh, 39vw)); } }
+
+.year-stars,.onboarding-stars { left:50%; transform:translateX(-50%); }
+
+/* Center the small overview star on the same horizontal axis as the year stars. */
+.view-all-star,.onboarding-all { height:2.4vw; min-height:26px; padding:0; justify-content:center; }
+.view-all-star > span:last-child,.onboarding-all .onboarding-year { top:calc(100% + .5vh); }
+
+.more-stars,.onboarding-more { position:relative; }
+.more-label { position:absolute; left:50%; top:calc(100% + .5vh); font-family:"Avenir Next",Avenir,sans-serif; font-size:clamp(10px,.95vw,15px); font-weight:400; line-height:normal; letter-spacing:normal; color:#606060; white-space:nowrap; opacity:0; visibility:hidden; transform:translate(-50%,6px); transition:opacity .2s ease,transform .24s cubic-bezier(.22,1,.36,1),visibility 0s linear .24s; pointer-events:none; }
+.onboarding-more .more-label { color:#fff; }
+.more-stars:hover .more-label,.onboarding-more:hover .more-label { opacity:1; visibility:visible; transform:translate(-50%,0); transition-delay:0s; }
+@media(prefers-reduced-motion:reduce) { .more-label { transition:none; transform:translate(-50%,0); } }
+
+/* Overview labels are shown only while the pointer hovers the control. */
+.view-all-star:not(:hover) > span:last-child,.onboarding-all:not(:hover) .onboarding-year { opacity:0; visibility:hidden; transform:translateY(6px); }
