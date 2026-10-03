@@ -121,8 +121,8 @@
   },
   {
     "path": "index.html",
-    "size": 11346,
-    "sha256": "bb50c2def3b2a7a39af726f3b1ecc0873c13c24f02ca17a3296b337b07506ef4"
+    "size": 11352,
+    "sha256": "e7d84375ab5253df8da75dc0526b9caaa9056fe2cfc7b153b3c2923450e6c2ba"
   },
   {
     "path": "onboarding-x.js",
@@ -141,8 +141,8 @@
   },
   {
     "path": "onboarding.js",
-    "size": 5119,
-    "sha256": "98bf89fadf67678a9d73e3f557f98f2b464d20ea3b1bca6b4e5c8e605e732df4"
+    "size": 5212,
+    "sha256": "efb98946c0a38922855a10c00fc81528b17f6c32d657058b345a11faa18640a1"
   },
   {
     "path": "star-posters.css",
