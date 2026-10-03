@@ -38,10 +38,13 @@
   const updateHover=()=>{hoverTarget=canvas.matches(':hover,:focus-visible')?1:0;draw();};
   ['pointerenter','pointerleave','focus','blur'].forEach(event=>canvas.addEventListener(event,updateHover));
   let meshReady=false, vertexCount=0, frame=null, previousTime=null, inView=true, drag=null;
-  let rotationX=-.20, rotationY=-.32, rotationZ=-.025;
+  // Both screens render one shared orientation and advance it once per animation frame.
+  const motion=window.designXMotion ||= {
+    rotationX:-.20, rotationY:-.32, rotationZ:-.025,
+    spin:[Math.random()<.5?-.14175:.14175,Math.random()<.5?-.315:.315,Math.random()<.5?-.0756:.0756],
+    previousTime:null, frameTime:null, dragging:false
+  };
   const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
-  const randomSign=()=>Math.random()<.5?-1:1;
-  const spin=[randomSign()*.14175,randomSign()*.315,randomSign()*.0756];
   const shouldAnimate=()=>inView&&!document.hidden&&!motionPreference.matches;
   function cross(a, b, c) { return (b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]); }
   function triangulate(points) {
@@ -90,13 +93,17 @@
   function render(time) {
     frame=null;if(!meshReady)return;
     const elapsed=previousTime===null?0:Math.min((time-previousTime)/1000,.05);previousTime=time;
-    if(shouldAnimate()&&!drag){rotationX+=spin[0]*elapsed;rotationY+=spin[1]*elapsed;rotationZ+=spin[2]*elapsed;}
+    if(shouldAnimate()&&!motion.dragging&&motion.frameTime!==time){
+      const step=motion.previousTime===null?0:Math.min((time-motion.previousTime)/1000,.05);
+      motion.previousTime=time;motion.frameTime=time;
+      motion.rotationX+=motion.spin[0]*step;motion.rotationY+=motion.spin[1]*step;motion.rotationZ+=motion.spin[2]*step;
+    }
     const dpr=Math.min(devicePixelRatio||1,2),w=Math.round(canvas.clientWidth*dpr),h=Math.round(canvas.clientHeight*dpr);
     if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
     gl.viewport(0,0,w,h);
     hoverAmount += (hoverTarget-hoverAmount)*Math.min(1,elapsed*12);
     gl.uniform1f(hoverLocation,hoverAmount);
-    const cx=Math.cos(rotationX),sx=Math.sin(rotationX),cy=Math.cos(rotationY),sy=Math.sin(rotationY),cz=Math.cos(rotationZ),sz=Math.sin(rotationZ);
+    const cx=Math.cos(motion.rotationX),sx=Math.sin(motion.rotationX),cy=Math.cos(motion.rotationY),sy=Math.sin(motion.rotationY),cz=Math.cos(motion.rotationZ),sz=Math.sin(motion.rotationZ);
     const rx=[1,0,0,0,0,cx,sx,0,0,-sx,cx,0,0,0,0,1];
     const ry=[cy,0,-sy,0,0,1,0,0,sy,0,cy,0,0,0,0,1];
     const rz=[cz,sz,0,0,-sz,cz,0,0,0,0,1,0,0,0,0,1];
@@ -109,24 +116,24 @@
   }
   canvas.addEventListener('pointerdown',e=>{
     if(e.button!==0)return;
-    draggedClick=false;
+    draggedClick=false;motion.dragging=true;
     drag={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,moved:false};canvas.setPointerCapture(e.pointerId);canvas.classList.add('is-dragging');
   });
   canvas.addEventListener('pointermove',e=>{
     if(!drag||e.pointerId!==drag.id)return;
     if(Math.hypot(e.clientX-drag.startX,e.clientY-drag.startY)>8)drag.moved=true;
-    if(drag.moved){rotationY+=(e.clientX-drag.x)*.009;rotationX+=(e.clientY-drag.y)*.009;}
+    if(drag.moved){motion.rotationY+=(e.clientX-drag.x)*.009;motion.rotationX+=(e.clientY-drag.y)*.009;}
     drag.x=e.clientX;drag.y=e.clientY;draw();
   });
-  const end=e=>{if(!drag||e.pointerId!==drag.id)return;draggedClick=drag.moved||e.type==='pointercancel';drag=null;canvas.classList.remove('is-dragging');if(canvas.hasPointerCapture(e.pointerId))canvas.releasePointerCapture(e.pointerId);};
+  const end=e=>{if(!drag||e.pointerId!==drag.id)return;draggedClick=drag.moved||e.type==='pointercancel';drag=null;motion.dragging=false;canvas.classList.remove('is-dragging');if(canvas.hasPointerCapture(e.pointerId))canvas.releasePointerCapture(e.pointerId);};
   canvas.addEventListener('pointerup',end);canvas.addEventListener('pointercancel',end);
-  canvas.addEventListener('lostpointercapture',()=>{drag=null;canvas.classList.remove('is-dragging');});
+  canvas.addEventListener('lostpointercapture',()=>{drag=null;motion.dragging=false;canvas.classList.remove('is-dragging');});
   canvas.addEventListener('keydown',e=>{
     if(e.key==='Enter'||e.key===' '){e.preventDefault();document.querySelector('.onboarding-about-link').click();return;}
     if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home'].includes(e.key))return;e.preventDefault();
-    if(e.key==='ArrowLeft')rotationY-=.15;if(e.key==='ArrowRight')rotationY+=.15;
-    if(e.key==='ArrowUp')rotationX-=.15;if(e.key==='ArrowDown')rotationX+=.15;
-    if(e.key==='Home'){rotationX=-.2;rotationY=-.32;rotationZ=-.025;}draw();
+    if(e.key==='ArrowLeft')motion.rotationY-=.15;if(e.key==='ArrowRight')motion.rotationY+=.15;
+    if(e.key==='ArrowUp')motion.rotationX-=.15;if(e.key==='ArrowDown')motion.rotationX+=.15;
+    if(e.key==='Home'){motion.rotationX=-.2;motion.rotationY=-.32;motion.rotationZ=-.025;}draw();
   });
   const restart=()=>{previousTime=null;draw();};
   new ResizeObserver(draw).observe(stage);
