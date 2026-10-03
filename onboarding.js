@@ -1,6 +1,14 @@
 (() => {
  const panel=document.querySelector('.onboarding-stage');
  const main=document.querySelector('.x-stage');
+ const shapes=panel.querySelector('.onboarding-shapes');
+ const cylinder=shapes.querySelector('.onboarding-cylinder');
+ const resizeCylinder=()=>{
+  const width=shapes.getBoundingClientRect().width;if(!width)return;
+  const end=495+50*1512/width;
+  cylinder.setAttribute('d',`M0 -15H${end}A506 506 0 0 1 ${end} 997H0Z`);
+ };
+ new ResizeObserver(resizeCylinder).observe(shapes);resizeCylinder();
  const images=[...panel.querySelectorAll('.onboarding-image')];
  const stars=[...panel.querySelectorAll('.onboarding-star:not(.onboarding-all)')];
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
