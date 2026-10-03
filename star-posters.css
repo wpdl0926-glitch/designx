@@ -5,7 +5,7 @@ html,body { margin:0; width:100%; min-height:100%; background:#ffffff; font-fami
 .x-stage { position:relative; width:100%; height:100svh; overflow:hidden; background:#ffffff; }
 .design-for-wordmark { position:absolute; left:26.851852%; top:calc(var(--brand-center-y) - 4.728836vw); width:46.230159%; height:auto; pointer-events:none; }
 .department-logo { position:absolute; left:4.3%; bottom:7.6%; width:13.5%; height:auto; }
-#design-x-canvas { position:absolute; left:68.48%; top:var(--brand-center-y); transform:translate(-50%,-50%); width:14vw; height:14vw; display:block; cursor:grab; touch-action:none; }
+#design-x-canvas { position:absolute; left:68.48%; top:var(--brand-center-y); transform:translate(-50%,-50%); width:11.2vw; height:11.2vw; display:block; cursor:grab; touch-action:none; }
 #design-x-canvas.is-dragging { cursor:grabbing; }
 #design-x-canvas[hidden] { display:none; }
 #design-x-canvas:focus-visible { outline:1px solid #001d5e; outline-offset:-4px; }
@@ -90,7 +90,7 @@ html,body { margin:0; width:100%; min-height:100%; background:#ffffff; font-fami
 
 body { overflow:hidden; }
 
-.about-x-hint { position:absolute; left:calc(68.48% + 7vw + 10px); top:calc(var(--brand-center-y) - 5vw); transform:translateY(-50%); font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; color:#606060; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .18s ease; white-space:nowrap; }
+.about-x-hint { position:absolute; left:calc(68.48% + 5.6vw + 6px); top:calc(var(--brand-center-y) - 4vw); transform:translateY(-50%); font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; color:#606060; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .18s ease; white-space:nowrap; }
 #design-x-canvas:hover ~ .about-x-hint,#design-x-canvas:focus-visible ~ .about-x-hint { opacity:1; visibility:visible; }
 #design-x-canvas { cursor:pointer; }
 
