@@ -5,7 +5,7 @@ body.is-onboarding .x-stage,body.is-onboarding .external-footer { visibility:hid
 .onboarding-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; opacity:0; transition:opacity 1.2s ease; }
 .onboarding-image.is-active { opacity:1; }
 .bottom-shade { position:absolute; inset:auto -120px -120px; height:70%; background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.06) 40%,rgba(0,0,0,.2) 85%); filter:blur(70px); pointer-events:none; }
-.onboarding-wordmark { position:absolute; inset:0; top:3.6%; width:100%; height:100%; filter:brightness(0) invert(1); pointer-events:none; }
+.onboarding-wordmark { position:absolute; left:26.851852%; top:calc(87.87% - 4.728836vw); width:46.230159%; height:auto; filter:brightness(0) invert(1); pointer-events:none; }
 .onboarding-entry { display:contents; }
 .onboarding-x { position:absolute; left:63.88%; top:80.69%; width:9.2%; height:14.4%; object-fit:contain; filter:brightness(0) invert(1); }
 .onboarding-stars { position:absolute; left:50.6%; top:72.7%; transform:translateX(calc(-50% - 50px)); display:flex; align-items:center; gap:1.3vw; }
@@ -33,7 +33,7 @@ body.is-onboarding .x-stage,body.is-onboarding .external-footer { visibility:hid
 
 /* Shared viewport and logo coordinates prevent focus from shifting one screen. */
 .x-stage { height:100dvh; overflow:clip; }
-.design-for-wordmark,.onboarding-wordmark { position:absolute; inset:0; top:3.6%; width:100%; height:100%; }
+.design-for-wordmark,.onboarding-wordmark { position:absolute; left:26.851852%; top:calc(87.87% - 4.728836vw); width:46.230159%; height:auto; }
 #design-x-canvas,#onboarding-x-canvas { position:absolute; left:68.48%; top:87.87%; transform:translate(-50%,-50%); width:14vw; height:14vw; }
 
 .onboarding-stars { align-items:flex-start; }
