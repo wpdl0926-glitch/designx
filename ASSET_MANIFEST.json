@@ -71,8 +71,8 @@
   },
   {
     "path": "images/dark-wordmark.svg",
-    "size": 9252,
-    "sha256": "889ebea8684872533962fc5454cbf3ba722eea7af7436a7600382623a520feac"
+    "size": 9227,
+    "sha256": "5278382a56bf1d64b97a7a017e4a5a1e989c5d2b055ad69351c5df4d4511678c"
   },
   {
     "path": "images/design-x.svg",
@@ -121,8 +121,8 @@
   },
   {
     "path": "index.html",
-    "size": 11313,
-    "sha256": "432064753877f68e165b73bb4fd506d57e2c37f46529c77f05a5bc95d77136f5"
+    "size": 11338,
+    "sha256": "2a22ea75079c8b5bb40750c110f64dd38f7c3197f6d3a04dc34347c88e78950a"
   },
   {
     "path": "onboarding-x.js",
@@ -131,8 +131,8 @@
   },
   {
     "path": "onboarding.css",
-    "size": 5999,
-    "sha256": "14efc64bb388125c713984e70f025ec20842d455ae8a30d89ee103671840d595"
+    "size": 6069,
+    "sha256": "45998a1d7c46184d763c7c37b480335468d4cc9627af7c489226afd6a9f7b371"
   },
   {
     "path": "onboarding.html",
@@ -146,8 +146,8 @@
   },
   {
     "path": "star-posters.css",
-    "size": 16312,
-    "sha256": "255e1a02fb30ca452378e86fe268f8faaefd67bb81bdc5179e1dfceaeb0f2d4b"
+    "size": 16350,
+    "sha256": "a79917868737d5038e8a6f0f0bb2363121ee52aa7c170ad87bc8adf52da2b9d9"
   },
   {
     "path": "star-posters.js",
