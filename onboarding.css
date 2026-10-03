@@ -17,7 +17,7 @@ body.is-onboarding .x-stage,body.is-onboarding .external-footer { visibility:hid
 @media(max-width:650px) { .onboarding-stars { left:51%; top:70%; gap:3vw; } }
 @media(prefers-reduced-motion:reduce) { .onboarding-image { transition:none; } }
 
-.onboarding-about-hint { position:absolute; left:72.8%; top:83.4%; transform:translateY(-50%); font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; color:#fff; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .18s ease; white-space:nowrap; }
+.onboarding-about-hint { position:absolute; left:calc(68.48% + 7vw + 10px); top:calc(87.87% - 5vw); transform:translateY(-50%); font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; color:#fff; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .18s ease; white-space:nowrap; }
 .onboarding-about-link:hover .onboarding-about-hint,.onboarding-about-link:focus-visible .onboarding-about-hint { opacity:1; visibility:visible; }
 
 #onboarding-x-canvas { position:absolute; left:68.48%; top:87.87%; transform:translate(-50%,-50%); width:14vw; height:14vw; display:block; cursor:pointer; touch-action:none; }
