@@ -60,8 +60,8 @@
  document.addEventListener('keydown',event=>{if(isOnboarding&&document.querySelector('.about-category').hidden&&(event.key==='PageDown'||event.key==='PageUp')){event.preventDefault();enterMain();}});
  window.addEventListener('designx:show-onboarding',showOnboarding);
  let idleTimer=null,lastActivity=Date.now();
- function idleCheck() { if(isOnboarding)return;const remaining=60_000-(Date.now()-lastActivity);if(remaining<=0)showOnboarding();else idleTimer=setTimeout(idleCheck,remaining); }
- function resetIdle() {lastActivity=Date.now();clearTimeout(idleTimer);if(!isOnboarding)idleTimer=setTimeout(idleCheck,60_000);}
+ function idleCheck() { if(isOnboarding)return;const remaining=20_000-(Date.now()-lastActivity);if(remaining<=0)showOnboarding();else idleTimer=setTimeout(idleCheck,remaining); }
+ function resetIdle() {lastActivity=Date.now();clearTimeout(idleTimer);if(!isOnboarding)idleTimer=setTimeout(idleCheck,20_000);}
  ['pointermove','pointerdown','wheel','keydown','touchstart','touchmove'].forEach(type=>window.addEventListener(type,resetIdle,{passive:true}));
  document.addEventListener('visibilitychange',()=>{photos();clearTimeout(idleTimer);if(!document.hidden)idleCheck();});
  reduced.addEventListener('change',photos);
