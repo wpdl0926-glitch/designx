@@ -5,7 +5,7 @@ body.is-onboarding .x-stage,body.is-onboarding .external-footer { visibility:hid
 .onboarding-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; opacity:0; transition:opacity 1.2s ease; }
 .onboarding-image.is-active { opacity:1; }
 .bottom-shade { position:absolute; inset:auto -120px -120px; height:70%; background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.06) 40%,rgba(0,0,0,.2) 85%); filter:blur(70px); pointer-events:none; }
-.onboarding-wordmark { position:absolute; left:26.851852%; top:calc(87.87% - 4.728836vw); width:46.230159%; height:auto; filter:brightness(0) invert(1); pointer-events:none; }
+.onboarding-wordmark { position:absolute; left:26.851852%; top:calc(var(--brand-center-y) - 4.728836vw); width:46.230159%; height:auto; filter:brightness(0) invert(1); pointer-events:none; }
 .onboarding-entry { display:contents; }
 .onboarding-x { position:absolute; left:63.88%; top:80.69%; width:9.2%; height:14.4%; object-fit:contain; filter:brightness(0) invert(1); }
 .onboarding-stars { position:absolute; left:50.6%; top:72.7%; transform:translateX(calc(-50% - 50px)); display:flex; align-items:center; gap:1.3vw; }
@@ -17,10 +17,10 @@ body.is-onboarding .x-stage,body.is-onboarding .external-footer { visibility:hid
 @media(max-width:650px) { .onboarding-stars { left:51%; top:70%; gap:3vw; } }
 @media(prefers-reduced-motion:reduce) { .onboarding-image { transition:none; } }
 
-.onboarding-about-hint { position:absolute; left:calc(68.48% + 7vw + 10px); top:calc(87.87% - 5vw); transform:translateY(-50%); font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; color:#fff; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .18s ease; white-space:nowrap; }
+.onboarding-about-hint { position:absolute; left:calc(68.48% + 7vw + 10px); top:calc(var(--brand-center-y) - 5vw); transform:translateY(-50%); font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; color:#fff; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .18s ease; white-space:nowrap; }
 .onboarding-about-link:hover .onboarding-about-hint,.onboarding-about-link:focus-visible .onboarding-about-hint { opacity:1; visibility:visible; }
 
-#onboarding-x-canvas { position:absolute; left:68.48%; top:87.87%; transform:translate(-50%,-50%); width:14vw; height:14vw; display:block; cursor:pointer; touch-action:none; }
+#onboarding-x-canvas { position:absolute; left:68.48%; top:var(--brand-center-y); transform:translate(-50%,-50%); width:14vw; height:14vw; display:block; cursor:pointer; touch-action:none; }
 #onboarding-x-canvas[hidden] { display:none; }
 #onboarding-x-canvas.is-dragging { cursor:grabbing; }
 #onboarding-x-canvas:focus-visible { outline:1px solid #fff; outline-offset:-4px; }
@@ -33,8 +33,8 @@ body.is-onboarding .x-stage,body.is-onboarding .external-footer { visibility:hid
 
 /* Shared viewport and logo coordinates prevent focus from shifting one screen. */
 .x-stage { height:100dvh; overflow:clip; }
-.design-for-wordmark,.onboarding-wordmark { position:absolute; left:26.851852%; top:calc(87.87% - 4.728836vw); width:46.230159%; height:auto; }
-#design-x-canvas,#onboarding-x-canvas { position:absolute; left:68.48%; top:87.87%; transform:translate(-50%,-50%); width:14vw; height:14vw; }
+.design-for-wordmark,.onboarding-wordmark { position:absolute; left:26.851852%; top:calc(var(--brand-center-y) - 4.728836vw); width:46.230159%; height:auto; }
+#design-x-canvas,#onboarding-x-canvas { position:absolute; left:68.48%; top:var(--brand-center-y); transform:translate(-50%,-50%); width:14vw; height:14vw; }
 
 .onboarding-stars { align-items:flex-start; }
 .onboarding-star { flex-direction:column; gap:.5vh; color:#fff; font-family:"Avenir Next",Avenir,sans-serif; font-size:clamp(10px,.95vw,15px); }
