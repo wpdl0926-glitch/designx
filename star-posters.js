@@ -109,7 +109,7 @@
   if(event.key==='Escape'&&index>=0)select(-1);
   if(event.key==='PageDown'||event.key==='PageUp') {event.preventDefault();select(nextStep(event.key==='PageDown'?1:-1));}
  });
- let scrollAmount=0, lastStep=performance.now(), wheelReset;
+ let scrollAmount=0, lastStep=performance.now(), wheelReset, wheelGestureHandled=false;
  document.querySelector('.x-stage').addEventListener('wheel',event=>{
   if(document.body.classList.contains('is-onboarding')||document.querySelector('.x-stage').classList.contains('is-about'))return;
   if(event.target.closest('.external-sites,.external-footer'))return;
@@ -120,14 +120,17 @@
   }
   event.preventDefault();
   const now=performance.now();
-  if(now-lastStep<720)return;
+  // Trackpad inertia belongs to the same gesture until wheel events stop.
+  clearTimeout(wheelReset);
+  wheelReset=setTimeout(()=>{scrollAmount=0;wheelGestureHandled=false;},250);
+  if(wheelGestureHandled||now-lastStep<720)return;
   const factor=event.deltaMode===1?16:event.deltaMode===2?innerHeight:1;
   if(Math.sign(scrollAmount)!==Math.sign(event.deltaY))scrollAmount=0;
   scrollAmount+=event.deltaY*factor;
-  clearTimeout(wheelReset);wheelReset=setTimeout(()=>{scrollAmount=0;},250);
+  
   if(Math.abs(scrollAmount)<70)return;
   const next=nextStep(Math.sign(scrollAmount));
-  scrollAmount=0;lastStep=now;
+  scrollAmount=0;lastStep=now;wheelGestureHandled=true;
   if(next!==index)select(next);
  },{passive:false});
  let touchY=null;
@@ -140,5 +143,5 @@
   const delta=touchY-event.changedTouches[0].clientY;touchY=null;
   if(Math.abs(delta)>45)select(nextStep(Math.sign(delta)));
  },{passive:true});
- window.addEventListener('designx:main-opened',event=>{cycleComplete=false;leaving=false;scrollAmount=0;lastStep=performance.now();const requested=event.detail?.exhibition;select(Number.isInteger(requested)&&requested>=0&&requested<=6?requested:-1);});
+ window.addEventListener('designx:main-opened',event=>{cycleComplete=false;leaving=false;scrollAmount=0;lastStep=performance.now();wheelGestureHandled=true;clearTimeout(wheelReset);wheelReset=setTimeout(()=>{wheelGestureHandled=false;},250);const requested=event.detail?.exhibition;select(Number.isInteger(requested)&&requested>=0&&requested<=6?requested:-1);});
 })();
