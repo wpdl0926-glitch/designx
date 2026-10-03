@@ -24,7 +24,7 @@ html,body { margin:0; width:100%; min-height:100%; background:#ffffff; font-fami
  .department-logo { width:23%; left:5%; bottom:5%; }
  .year-stars { top:70%; left:51%; gap:3vw; }
  .more-stars { font-size:20px; line-height:26px; }
- .poster-display { height:50vh; top:calc(34% + 40px); }
+ .poster-display { height:50vh; top:calc(34% + 90px); }
 }
 
 .more-stars { display:flex; gap:3px; align-items:center; padding:0; height:2.4vw; min-height:26px; border:0; background:none; cursor:pointer; }
@@ -107,7 +107,39 @@ body { overflow:hidden; }
 .about-content .about-body p { font-family:Pretendard,sans-serif; font-size:9.75pt; font-weight:500; letter-spacing:-.02em; line-height:1.65; color:#111; }
 .about-body p + p { margin-top:21px; }
 .about-content .about-body p[lang="en"] { font-weight:400; }
-@media(max-width:650px) { .about-content { padding:120px 32px 28px; } .about-back { right:32px; top:60px; } } }
+@media(max-width:650px) {
+  .about-category {
+    inset:0;
+    width:100%;
+    height:100vh;
+    height:100dvh;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    background:#fff;
+  }
+  .about-back {
+    top:calc(24px + env(safe-area-inset-top));
+    right:clamp(22px,7.2vw,32px);
+    width:32px;
+    height:32px;
+    font-size:24px;
+  }
+  .about-content {
+    padding:clamp(96px,13vh,120px) clamp(24px,7.2vw,32px) calc(32px + env(safe-area-inset-bottom));
+  }
+  .about-content h1 {
+    max-width:18em;
+    font-size:clamp(23px,6.4vw,27px);
+    line-height:1.18;
+    margin-bottom:22px;
+  }
+  .about-content .about-body p {
+    font-size:14px;
+    line-height:1.65;
+  }
+  .about-body p + p { margin-top:22px; }
+}
 
 @view-transition { navigation:auto; }
 ::view-transition-old(root),::view-transition-new(root) { animation-duration:700ms; animation-timing-function:ease-in-out; }
@@ -115,6 +147,7 @@ body { overflow:hidden; }
 
 .about-category,.about-category h1,.about-category .about-body p,.about-category .about-back { color:#000000; }
 body.is-onboarding .about-category,body.is-onboarding .about-category h1,body.is-onboarding .about-category .about-body p,body.is-onboarding .about-category .about-back { color:#ffffff; }
+@media(max-width:650px) { body.is-onboarding .about-category,body.is-onboarding .about-category h1,body.is-onboarding .about-category .about-body p,body.is-onboarding .about-category .about-back { color:#000; } }
 
 .external-toggle:hover img,.external-toggle:focus-visible img { opacity:.6; }
 .external-sites-hint { position:absolute; right:0; bottom:calc(100% + 8px); font-family:"Avenir Next",Avenir,sans-serif; font-size:12px; font-weight:500; color:#606060; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .18s ease; white-space:nowrap; }
@@ -183,3 +216,113 @@ body.is-onboarding .about-category,body.is-onboarding .about-category h1,body.is
 .all-poster-link img { width:100%; height:auto; aspect-ratio:1358 / 1920; max-height:none; object-fit:cover; }
 
 .about-content .about-body p[lang="ko"] { word-break:keep-all; }
+
+/* Give each mobile brand mark its own clear place. */
+@media(max-width:650px) {
+  .x-stage .design-for-wordmark {
+    left:26.851852%;
+    top:calc(var(--brand-center-y) - 4.728836vw);
+    bottom:auto;
+    transform:none;
+    width:46.230159%;
+  }
+  .department-logo {
+    left:50%;
+    top:calc(44px + env(safe-area-inset-top));
+    bottom:auto;
+    width:min(32.4vw,126px);
+    height:auto;
+    aspect-ratio:664.91 / 130.39;
+    transform:translateX(-50%);
+    z-index:5;
+    pointer-events:none;
+  }
+  .x-stage .system-link {
+    left:auto;
+    right:5%;
+    top:auto;
+    bottom:calc(10.5% + env(safe-area-inset-bottom));
+    width:12vw;
+    height:10vw;
+  }
+  .onboarding-stage .system-link {
+    left:auto;
+    right:5%;
+    top:calc(var(--brand-center-y) - 4.728836vw);
+    width:12vw;
+    height:10vw;
+  }
+  .design-for-wordmark,.onboarding-stage .onboarding-wordmark { pointer-events:auto; cursor:pointer; }
+}
+
+/* Keep the selected exhibition title visible directly under its poster on mobile. */
+@media(max-width:650px) {
+  .poster-link {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  .poster-link .poster-title {
+    position:static;
+    display:block;
+    width:100%;
+    max-width:100%;
+    margin:0;
+    font-size:13px;
+    line-height:1.4;
+    text-align:center;
+    overflow-wrap:normal;
+    opacity:1;
+    visibility:visible;
+    transform:none;
+    transition:none;
+    pointer-events:auto;
+  }
+}
+
+@media(max-width:650px) {
+  html,body { height:auto; min-height:100%; overflow-x:hidden; overflow-y:auto; }
+  body { overflow-y:auto; }
+  body.is-onboarding { overflow:hidden; }
+  .x-stage { height:100svh; transform:none !important; transition:none; }
+  .external-footer { position:relative; left:auto; bottom:auto; }
+  .external-sites { display:none; }
+  .x-stage .year-stars,.onboarding-stage .onboarding-stars {
+    top:calc(70% + 50px);
+    right:0;
+    bottom:auto;
+    left:0;
+    width:100%;
+    height:52px;
+    padding:0 calc(50% - 26px);
+    transform:none;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items:center;
+    gap:8px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:50%;
+    overscroll-behavior-x:contain;
+    touch-action:pan-x;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .x-stage .year-stars::-webkit-scrollbar,.onboarding-stage .onboarding-stars::-webkit-scrollbar { display:none; }
+  .x-stage .year-stars > *,.onboarding-stage .onboarding-stars > * {
+    flex:0 0 52px;
+    width:52px;
+    height:44px;
+    scroll-snap-align:center;
+  }
+  .x-stage .year-stars .year-star[aria-pressed="true"] .star-shape,
+  .onboarding-stage .onboarding-stars .onboarding-star[aria-pressed="true"] .onboarding-star-shape {
+    transform:scale(1.4);
+  }
+  .x-stage .year-stars .year-star:not([aria-pressed="true"]),
+  .onboarding-stage .onboarding-stars .onboarding-star:not([aria-pressed="true"]) { opacity:.55; }
+  .x-stage .year-stars .year-star[aria-pressed="true"],
+  .onboarding-stage .onboarding-stars .onboarding-star[aria-pressed="true"] { opacity:1; }
+}

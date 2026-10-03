@@ -71,6 +71,10 @@
   buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===next)));
   more.setAttribute('aria-pressed',String(next===years.length));
   viewAll.setAttribute('aria-pressed',String(next===6));
+  if(matchMedia('(max-width:650px)').matches&&next>=0) {
+   const active=next<years.length?buttons[next]:next===6?viewAll:more;
+   active.scrollIntoView({behavior:'auto',block:'nearest',inline:'center'});
+  }
   if(visiblePanel&&!overviewOrigin) {
    const previous=visiblePanel;
    await animate(previous===display?image:previous.querySelector('ul'),false);
@@ -101,6 +105,22 @@
    archive.hidden=false;visiblePanel=archive;animate(archive.querySelector('ul'),true);
   }
  }
+ if(matchMedia('(max-width:650px)').matches) {
+  const carousel=document.querySelector('.year-stars');
+  let snapTimer;
+  const settleCarousel=()=>{
+   clearTimeout(snapTimer);
+   const center=innerWidth/2;
+   const item=[...carousel.children].reduce((nearest,child)=>{
+    const box=child.getBoundingClientRect();
+    return Math.abs(box.left+box.width/2-center)<Math.abs(nearest.getBoundingClientRect().left+nearest.getBoundingClientRect().width/2-center)?child:nearest;
+   },carousel.firstElementChild);
+   const next=item===viewAll?6:item===more?years.length:buttons.indexOf(item);
+   if(next>=0&&next!==index)select(next);
+  };
+  carousel.addEventListener('scroll',()=>{clearTimeout(snapTimer);snapTimer=setTimeout(settleCarousel,240);},{passive:true});
+  carousel.addEventListener('scrollend',settleCarousel,{passive:true});
+ }
  buttons.forEach((button,i)=>button.addEventListener('click',()=>select(index===i?-1:i)));
  viewAll.addEventListener('click',()=>select(index===6?-1:6));
  more.addEventListener('click',()=>select(index===years.length?-1:years.length));
@@ -112,6 +132,7 @@
  let scrollAmount=0, lastStep=performance.now(), wheelReset, wheelGestureHandled=false;
  document.querySelector('.x-stage').addEventListener('wheel',event=>{
   if(document.body.classList.contains('is-onboarding')||document.querySelector('.x-stage').classList.contains('is-about'))return;
+  if(matchMedia('(max-width:650px)').matches)return;
   if(event.target.closest('.external-sites,.external-footer'))return;
   // Allow the archive itself to scroll when its list exceeds the screen height.
   if(event.target.closest('.archive-display')&&archive.scrollHeight>archive.clientHeight) {
@@ -135,7 +156,7 @@
  },{passive:false});
  let touchY=null;
  document.querySelector('.x-stage').addEventListener('touchstart',event=>{
-  if(document.body.classList.contains('is-onboarding')||document.querySelector('.x-stage').classList.contains('is-about')){touchY=null;return;}
+  if(matchMedia('(max-width:650px)').matches||document.body.classList.contains('is-onboarding')||document.querySelector('.x-stage').classList.contains('is-about')){touchY=null;return;}
   touchY=event.target.closest('#design-x-canvas,.archive-display')?null:event.touches[0].clientY;
  },{passive:true});
  document.querySelector('.x-stage').addEventListener('touchend',event=>{

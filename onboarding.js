@@ -13,6 +13,22 @@
  new ResizeObserver(resizeCylinder).observe(shapes);resizeCylinder();
  const images=[...panel.querySelectorAll('.onboarding-image')];
  const stars=[...panel.querySelectorAll('.onboarding-star:not(.onboarding-all)')];
+ if(matchMedia('(max-width:650px)').matches) {
+  const carousel=panel.querySelector('.onboarding-stars');
+  requestAnimationFrame(()=>stars[current]?.scrollIntoView({behavior:'auto',block:'nearest',inline:'center'}));
+  let snapTimer;
+  const settleCarousel=()=>{
+   clearTimeout(snapTimer);
+   const center=innerWidth/2;
+   const item=[...carousel.children].reduce((nearest,child)=>{
+    const box=child.getBoundingClientRect();
+    return Math.abs(box.left+box.width/2-center)<Math.abs(nearest.getBoundingClientRect().left+nearest.getBoundingClientRect().width/2-center)?child:nearest;
+   },carousel.firstElementChild);
+   carousel.querySelectorAll('.onboarding-star').forEach(star=>star.setAttribute('aria-pressed',String(star===item)));
+  };
+  carousel.addEventListener('scroll',()=>{clearTimeout(snapTimer);snapTimer=setTimeout(settleCarousel,240);},{passive:true});
+  carousel.addEventListener('scrollend',settleCarousel,{passive:true});
+ }
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  let isOnboarding=true,busy=false,current=0,photoTimer,animation,scrollAmount=0,wheelReset,enteredAt=performance.now(),press=null,dragged=false,touchY=null;
  function photos() {
@@ -49,6 +65,7 @@
  panel.addEventListener('pointercancel',()=>{press=null;dragged=true;});
  panel.addEventListener('click',event=>{if(event.defaultPrevented||event.target.closest('.onboarding-about-link'))return;event.preventDefault();if(dragged&&event.detail!==0){dragged=false;return;}const star=event.target.closest('.onboarding-star');enterMain(star?Number(star.dataset.slide):event.target.closest('.onboarding-more')?5:-1);});
  panel.addEventListener('wheel',event=>{
+  if(event.target.closest('.onboarding-stars')&&Math.abs(event.deltaX)>Math.abs(event.deltaY))return;
   event.preventDefault();if(busy||performance.now()-enteredAt<720)return;
   const factor=event.deltaMode===1?16:event.deltaMode===2?innerHeight:1;
   if(Math.sign(scrollAmount)!==Math.sign(event.deltaY))scrollAmount=0;

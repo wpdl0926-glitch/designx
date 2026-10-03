@@ -2,6 +2,7 @@
  const panel=document.querySelector('.about-category');
  const closeButton=panel.querySelector('.about-back');
  const triggers=[...document.querySelectorAll('.about-x-link,.onboarding-about-link,.system-link')];
+ const mobileWordmarks=[...document.querySelectorAll('.design-for-wordmark,.onboarding-wordmark')];
  let returnFocus=null;
  const canvas=document.querySelector('#design-x-canvas');
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
@@ -32,6 +33,13 @@
   panel.hidden=true;triggers.forEach(link=>link.setAttribute('aria-expanded','false'));canvas.setAttribute('aria-expanded','false');document.querySelector('.onboarding-about-link').setAttribute('aria-expanded','false');if(returnFocus&&!returnFocus.closest('[inert]'))returnFocus.focus({preventScroll:true});
  }
  triggers.forEach(trigger=>trigger.addEventListener('click',event=>{if(event.defaultPrevented)return;event.preventDefault();open(trigger);}));
+ if(matchMedia('(max-width:650px)').matches) mobileWordmarks.forEach(wordmark=>{
+  wordmark.setAttribute('role','button');wordmark.setAttribute('tabindex','0');wordmark.setAttribute('aria-label','about X 창 열기');
+  const trigger=wordmark.classList.contains('onboarding-wordmark')?document.querySelector('.onboarding-about-link'):document.querySelector('.about-x-link');
+  const openAbout=event=>{event.preventDefault();event.stopPropagation();trigger.click();};
+  wordmark.addEventListener('click',openAbout);
+  wordmark.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){openAbout(event);}});
+ });
  closeButton.addEventListener('click',close);
  panel.addEventListener('wheel',event=>event.stopPropagation(),{passive:true});
  panel.addEventListener('touchstart',event=>event.stopPropagation(),{passive:true});

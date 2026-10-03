@@ -16,8 +16,8 @@
   },
   {
     "path": "about-category.js",
-    "size": 2919,
-    "sha256": "8bfaa10d053d5556c00cdfd4e7a1740253cab32d84f84c4e6b010af1815959b2"
+    "size": 3648,
+    "sha256": "d443f030ebc88341252cf837d1bbc2addb4560bf759ccbff8aae915a53a6c106"
   },
   {
     "path": "about.html",
@@ -31,8 +31,8 @@
   },
   {
     "path": "external-sites.js",
-    "size": 1049,
-    "sha256": "e7a66af93682eaa06cb52d42d3fbe5dae2a9ab30c1f70f6e3e64ac65e8d1c30e"
+    "size": 1521,
+    "sha256": "043772513b1fdfe86069263c4766b51663a40e4e597c8ff9fedcf31b0c3f5a61"
   },
   {
     "path": "images/2022-01.png",
@@ -115,14 +115,19 @@
     "sha256": "d02af993571d19800d25db95e5e8848815f60de7e08acdc9b122cfd5c4b8f83c"
   },
   {
+    "path": "images/yonsei-logo-blue.svg",
+    "size": 30391,
+    "sha256": "799de34a0811f85391e52b9d0095f3758304e21166368398dabde98bd5695142"
+  },
+  {
     "path": "images/yonsei-symbol.svg",
     "size": 30388,
     "sha256": "d7f7f20b5198a8ddbdb108abe6da3e9985b08c2cec16f7dc9c2be5d0cf77f875"
   },
   {
     "path": "index.html",
-    "size": 11377,
-    "sha256": "1d97d5541e0a9c0e57cb6782f434831981852b71113add14908e08348590108f"
+    "size": 10914,
+    "sha256": "99911310a7efa8cf52bb531db34e878ea8125c8303e6a77b09ccccbd3f901f47"
   },
   {
     "path": "onboarding-x.js",
@@ -141,17 +146,17 @@
   },
   {
     "path": "onboarding.js",
-    "size": 5212,
-    "sha256": "bec678ee939c0dc09ef930f52cc82f2cdbb595434235fe7956e3da1b79010ae7"
+    "size": 6261,
+    "sha256": "295b0f29b5088837aefa88294103566d569c021d84c633085bb05eacb2f99216"
   },
   {
     "path": "star-posters.css",
-    "size": 16648,
-    "sha256": "9b2cda42dca9dce457a0d5567fe313a9e92473474c2a4ef0e855b2e3e8f2eb64"
+    "size": 20644,
+    "sha256": "97c26b1f0a0c72437d935cbc9c173b11d58998daff1426fe36891f85ef49def6"
   },
   {
     "path": "star-posters.js",
-    "size": 8872,
-    "sha256": "073bb6409b26e64e31da01dc491e4a69fce17698b3dc741da3de0961b0cd4660"
+    "size": 10009,
+    "sha256": "9ce452dc9ef13f32c46bd8c75c0790283730e8d07208ef9dd30ea32610d8d9ae"
   }
 ]
