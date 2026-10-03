@@ -5,8 +5,9 @@
  const cylinder=shapes.querySelector('.onboarding-cylinder');
  const resizeCylinder=()=>{
   const {width,height}=shapes.getBoundingClientRect();if(!width||!height)return;
-  const end=495+50*1512/width;
   const radiusX=506*(height/982)/(width/1512);
+  // Keep the original right edge plus 50 CSS px; adjust only the straight section.
+  const end=1001+50*1512/width-radiusX;
   cylinder.setAttribute('d',`M0 -15H${end}A${radiusX} 506 0 0 1 ${end} 997H0Z`);
  };
  new ResizeObserver(resizeCylinder).observe(shapes);resizeCylinder();
