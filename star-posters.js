@@ -51,6 +51,8 @@
  const nextStep=direction=>{
   if(index===6){cycleComplete=false;return direction>0?0:5;}
   if(direction>0&&index===-1&&cycleComplete)return -2;
+  if(direction>0&&index===-1)return 6;
+  if(direction<0&&index===0)return 6;
   if(direction>0&&index===years.length){cycleComplete=true;return -1;}
   cycleComplete=false;
   return Math.max(-1,Math.min(years.length,index+direction));
@@ -61,13 +63,15 @@
    window.dispatchEvent(new Event('designx:show-onboarding'));return;
   }
   hideCursorHint();
+  const overviewOrigin=next===0&&visiblePanel===allPosters&&!reducedMotion.matches
+   ?allPosters.querySelector('img').getBoundingClientRect():null;
   const current=++revision;
   index=next;animation?.cancel();animation=null;
   document.querySelector('.year-stars').classList.toggle('has-selection',next>=0);
   buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===next)));
   more.setAttribute('aria-pressed',String(next===years.length));
   viewAll.setAttribute('aria-pressed',String(next===6));
-  if(visiblePanel) {
+  if(visiblePanel&&!overviewOrigin) {
    const previous=visiblePanel;
    await animate(previous===display?image:previous.querySelector('ul'),false);
    if(current!==revision)return;
@@ -79,7 +83,18 @@
    image.src='images/'+sources[next];image.alt=years[next]+' 통합디자인학과 졸업전시 포스터';
    try {await image.decode();} catch {return;}
    if(current!==revision)return;
-   display.hidden=false;visiblePanel=display;animate(image,true);
+   display.hidden=false;
+   if(overviewOrigin) {
+    allPosters.hidden=true;
+    const target=image.getBoundingClientRect();
+    const dx=overviewOrigin.left-target.left,dy=overviewOrigin.top-target.top;
+    animation=image.animate([
+     {transformOrigin:'0 0',transform:`translate(${dx}px,${dy}px) scale(${overviewOrigin.width/target.width},${overviewOrigin.height/target.height})`,opacity:1},
+     {transformOrigin:'0 0',transform:'translate(0,0) scale(1,1)',opacity:1}
+    ],{duration:620,easing:'cubic-bezier(.22,1,.36,1)'});
+    animation.finished.catch(()=>{});
+   } else animate(image,true);
+   visiblePanel=display;
   } else if(next===6) {
    allPosters.hidden=false;visiblePanel=allPosters;animate(allPosters.querySelector('ul'),true);
   } else {
