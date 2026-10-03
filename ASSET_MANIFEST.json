@@ -26,8 +26,8 @@
   },
   {
     "path": "black-x.js",
-    "size": 9030,
-    "sha256": "2400bc7953165b895017f689370b191d25d66abb59e68861eb13b238fcd2a6a3"
+    "size": 9599,
+    "sha256": "09f08b327e7eda22e34784fc02ccfbc79888683777a9701a63f8b0b2b7aaab65"
   },
   {
     "path": "external-sites.js",
@@ -121,13 +121,13 @@
   },
   {
     "path": "index.html",
-    "size": 11352,
-    "sha256": "54f017930c3b5a107bdcf7a536d8e20c538214d12027703a70074c085e3b8efa"
+    "size": 11351,
+    "sha256": "a03641b23c652eb274a7306f719bea854bfbb91493fc60767ec5fde4f11cfe4e"
   },
   {
     "path": "onboarding-x.js",
-    "size": 9054,
-    "sha256": "500f5f28cdd579da7e859c0e02bdf9f10c75de41474bc4f7edd9ca9df407725f"
+    "size": 9623,
+    "sha256": "9124023c49fb26a186f0074f5515e590a7408ddf05af7a86243545611e302490"
   },
   {
     "path": "onboarding.css",
