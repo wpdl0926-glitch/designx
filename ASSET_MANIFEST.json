@@ -121,8 +121,8 @@
   },
   {
     "path": "index.html",
-    "size": 11338,
-    "sha256": "2a22ea75079c8b5bb40750c110f64dd38f7c3197f6d3a04dc34347c88e78950a"
+    "size": 11346,
+    "sha256": "bb50c2def3b2a7a39af726f3b1ecc0873c13c24f02ca17a3296b337b07506ef4"
   },
   {
     "path": "onboarding-x.js",
@@ -131,8 +131,8 @@
   },
   {
     "path": "onboarding.css",
-    "size": 6069,
-    "sha256": "45998a1d7c46184d763c7c37b480335468d4cc9627af7c489226afd6a9f7b371"
+    "size": 6102,
+    "sha256": "8dea0b2f7e286c56fd71ecfa9914cc27ed3b8f5cd24ae8f8f81d25cef0059bb8"
   },
   {
     "path": "onboarding.html",
@@ -141,13 +141,13 @@
   },
   {
     "path": "onboarding.js",
-    "size": 5053,
-    "sha256": "53310c6b59cda73670bf472fbf39d82ecc1070d2ee818f2391d607d3decbf6f3"
+    "size": 5119,
+    "sha256": "98bf89fadf67678a9d73e3f557f98f2b464d20ea3b1bca6b4e5c8e605e732df4"
   },
   {
     "path": "star-posters.css",
-    "size": 16350,
-    "sha256": "a79917868737d5038e8a6f0f0bb2363121ee52aa7c170ad87bc8adf52da2b9d9"
+    "size": 16383,
+    "sha256": "0e36482d5d517c3182a3700185d378c002b057b0820d18c010bb6764d267f115"
   },
   {
     "path": "star-posters.js",
