@@ -181,3 +181,5 @@ body.is-onboarding .about-category,body.is-onboarding .about-category h1,body.is
 
 /* Uniform thumbnail frames keep the exhibition overview aligned. */
 .all-poster-link img { width:100%; height:auto; aspect-ratio:1358 / 1920; max-height:none; object-fit:cover; }
+
+.about-content .about-body p[lang="ko"] { word-break:keep-all; }
