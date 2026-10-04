@@ -326,3 +326,52 @@ body.is-onboarding .about-category,body.is-onboarding .about-category h1,body.is
   .x-stage .year-stars .year-star[aria-pressed="true"],
   .onboarding-stage .onboarding-stars .onboarding-star[aria-pressed="true"] { opacity:1; }
 }
+
+/* Lift the complete year navigation above the visible exhibition panel. */
+.x-stage .year-stars {
+  z-index:4;
+  will-change:transform,translate;
+}
+@media(prefers-reduced-motion:reduce) {
+  .x-stage .year-stars { transition:none; }
+}
+
+/* Exhibition mode: centered posters and a compact main brand/navigation. */
+.main-brand-group {
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  /* Anchor scaling to the D baseline, shared with the department logo. */
+  transform-origin:50% 92.4%;
+  transition:transform var(--exhibition-motion-duration) var(--exhibition-motion-easing);
+}
+.main-brand-group .system-link,.main-brand-group #design-x-canvas { pointer-events:auto; }
+.x-stage.has-exhibition .main-brand-group { transform:scale(.7); }
+.x-stage .poster-display,.x-stage .all-posters-display,.x-stage .archive-display { top:calc(50% - 15px); }
+.x-stage .year-stars {
+  transform-origin:50% 0;
+  translate:0 0;
+  transition:translate var(--exhibition-motion-duration) var(--exhibition-motion-easing),transform var(--exhibition-motion-duration) var(--exhibition-motion-easing);
+}
+.x-stage .year-stars.is-above-poster { translate:0 var(--stars-offset); transform:translateX(-50%) scale(.8); }
+@media(max-width:650px) { .x-stage .year-stars.is-above-poster { transform:scale(.8); } }
+@media(prefers-reduced-motion:reduce) {
+  .main-brand-group,.x-stage .year-stars { transition:none; }
+}
+
+/* Keep About labels at their original visual size inside the scaled brand. */
+.x-stage.has-exhibition .main-brand-group .about-x-hint,
+.x-stage.has-exhibition .main-brand-group .system-link .brand-hint {
+  font-size:calc(12px / .7);
+}
+
+@media(max-width:650px) { .main-brand-group { transform-origin:50% var(--brand-center-y); } }
+
+/* Desktop university/department links; mobile retains only the combined artwork. */
+.department-logo > img { display:block; width:100%; height:100%; }
+.department-logo .brand-link:focus-visible { outline:1px solid #001d5e; outline-offset:4px; }
+@media(max-width:650px) {
+  .department-logo .brand-link { display:none; }
+}
+
+:root { --exhibition-motion-duration:700ms; --exhibition-motion-easing:cubic-bezier(.45,0,.2,1); }

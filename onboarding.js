@@ -1,6 +1,7 @@
 (() => {
  const panel=document.querySelector('.onboarding-stage');
  const main=document.querySelector('.x-stage');
+ const brand=panel.querySelector('.onboarding-brand-group');
  const shapes=panel.querySelector('.onboarding-shapes');
  const cylinder=shapes.querySelector('.onboarding-cylinder');
  const resizeCylinder=()=>{
@@ -55,8 +56,17 @@
   if(footerToggle.getAttribute('aria-expanded')==='true')footerToggle.click();
   const closeAbout=document.querySelector('.about-back');
   if(!document.querySelector('.about-category').hidden)closeAbout.click();
+  const returningFromPoster=main.classList.contains('has-exhibition');
   panel.hidden=false;panel.inert=false;main.inert=true;
-  if(!reduced.matches){animation=panel.animate([{opacity:0},{opacity:1}],{duration:700,easing:'ease-in-out'});await animation.finished.catch(()=>{});}
+  if(!reduced.matches){
+   const easing='cubic-bezier(.45,0,.2,1)';
+   animation=panel.animate([{opacity:0},{opacity:1}],{duration:900,easing});
+   const reveal=brand.animate([
+    {opacity:0,transform:`scale(${returningFromPoster?.7:1})`},
+    {opacity:1,transform:'scale(1)'}
+   ],{duration:1000,easing});
+   await Promise.all([animation.finished.catch(()=>{}),reveal.finished.catch(()=>{})]);
+  }
   document.body.classList.add('is-onboarding');busy=false;enteredAt=performance.now();scrollAmount=0;photos();
  }
  panel.addEventListener('pointerdown',event=>{press={x:event.clientX,y:event.clientY};dragged=false;});

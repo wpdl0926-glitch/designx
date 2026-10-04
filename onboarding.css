@@ -61,3 +61,17 @@ body.is-onboarding .x-stage,body.is-onboarding .external-footer { visibility:hid
 
 /* Overview labels are shown only while the pointer hovers the control. */
 .view-all-star:not(:hover) > span:last-child,.onboarding-all:not(:hover) .onboarding-year { opacity:0; visibility:hidden; transform:translateY(6px); }
+
+/* Reveal the white brand as one object when returning from an exhibition. */
+.onboarding-brand-group {
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  transform-origin:50% 92.4%;
+}
+.onboarding-brand-group .system-link,
+.onboarding-brand-group #onboarding-x-canvas { pointer-events:auto; }
+@media(max-width:650px) {
+  .onboarding-brand-group { transform-origin:50% var(--brand-center-y); }
+}

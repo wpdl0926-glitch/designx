@@ -28,6 +28,8 @@
  const more=document.querySelector('.more-stars');
  const buttons=[...document.querySelectorAll('.year-star[data-year]')];
  const viewAll=document.querySelector('.view-all-star');
+ const stars=document.querySelector('.year-stars');
+ const stage=document.querySelector('.x-stage');
  const allPosters=document.querySelector('.all-posters-display');
  years.forEach((year,i)=>{
   const item=document.createElement('li'),link=document.createElement('a'),poster=document.createElement('img');
@@ -36,6 +38,9 @@
   link.addEventListener('pointerenter',moveCursorHint);link.addEventListener('pointermove',moveCursorHint);link.addEventListener('pointerleave',hideCursorHint);link.addEventListener('pointerdown',hideCursorHint);
  });
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+ const motionStyle=getComputedStyle(stage);
+ const motionDuration=parseFloat(motionStyle.getPropertyValue('--exhibition-motion-duration'))||700;
+ const motionEasing=motionStyle.getPropertyValue('--exhibition-motion-easing').trim()||'cubic-bezier(.45,0,.2,1)';
  let index=-1, animation=null, revision=0, visiblePanel=null, cycleComplete=false, leaving=false;
  const animate=(element,opening)=>{
   if(reducedMotion.matches)return Promise.resolve();
@@ -45,9 +50,26 @@
   ]:[
    {opacity:1,transform:'translateY(0) scale(1)'},
    {opacity:0,transform:'translateY(12px) scale(.98)'}
-  ],{duration:opening?460:200,easing:opening?'cubic-bezier(.22,1,.36,1)':'ease-in'});
+  ],{duration:motionDuration,easing:motionEasing});
   return animation.finished.catch(()=>{});
  };
+ const positionStars=()=>{
+  if(index<0||!visiblePanel||visiblePanel.hidden)return;
+  const mobile=matchMedia('(max-width:650px)').matches;
+  const stageHeight=stage.clientHeight;
+  // One shared navigation anchor, independent of each poster's aspect ratio.
+  const previousCenter=mobile?stageHeight*.34+90:stageHeight*.35+40;
+  const referenceHeight=stageHeight*(mobile?.5:.54);
+  const panelTop=previousCenter-referenceHeight/2;
+  const gap=mobile?16:24;
+  const restingTop=mobile?stageHeight*.7+50:stageHeight*.727;
+  const targetTop=Math.max(16,panelTop-stars.offsetHeight-gap)+80;
+  stars.style.setProperty('--stars-offset',(targetTop-restingTop)+'px');
+  stars.classList.add('is-above-poster');
+  stage.classList.add('has-exhibition');
+ };
+ const starLayoutObserver=new ResizeObserver(positionStars);
+ [stage,stars,display,allPosters,archive].forEach(element=>starLayoutObserver.observe(element));
  const nextStep=direction=>{
   if(index===6){cycleComplete=false;return direction>0?0:5;}
   if(direction>0&&index===-1&&cycleComplete)return -2;
@@ -67,7 +89,9 @@
    ?allPosters.querySelector('img').getBoundingClientRect():null;
   const current=++revision;
   index=next;animation?.cancel();animation=null;
-  document.querySelector('.year-stars').classList.toggle('has-selection',next>=0);
+  stars.classList.toggle('has-selection',next>=0);
+  if(next<0)stage.classList.remove('has-exhibition');
+  if(next<0)stars.classList.remove('is-above-poster');
   buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===next)));
   more.setAttribute('aria-pressed',String(next===years.length));
   viewAll.setAttribute('aria-pressed',String(next===6));
@@ -95,14 +119,14 @@
     animation=image.animate([
      {transformOrigin:'0 0',transform:`translate(${dx}px,${dy}px) scale(${overviewOrigin.width/target.width},${overviewOrigin.height/target.height})`,opacity:1},
      {transformOrigin:'0 0',transform:'translate(0,0) scale(1,1)',opacity:1}
-    ],{duration:620,easing:'cubic-bezier(.22,1,.36,1)'});
+    ],{duration:motionDuration,easing:motionEasing});
     animation.finished.catch(()=>{});
    } else animate(image,true);
-   visiblePanel=display;
+   visiblePanel=display;positionStars();
   } else if(next===6) {
-   allPosters.hidden=false;visiblePanel=allPosters;animate(allPosters.querySelector('ul'),true);
+   allPosters.hidden=false;visiblePanel=allPosters;positionStars();animate(allPosters.querySelector('ul'),true);
   } else {
-   archive.hidden=false;visiblePanel=archive;animate(archive.querySelector('ul'),true);
+   archive.hidden=false;visiblePanel=archive;positionStars();animate(archive.querySelector('ul'),true);
   }
  }
  if(matchMedia('(max-width:650px)').matches) {

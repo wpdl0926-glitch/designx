@@ -26,8 +26,8 @@
   },
   {
     "path": "black-x.js",
-    "size": 9599,
-    "sha256": "09f08b327e7eda22e34784fc02ccfbc79888683777a9701a63f8b0b2b7aaab65"
+    "size": 10626,
+    "sha256": "9ce0fabe6feb779f4bb8d0d1a25ce660c2ff9351d0d185c00360d6af0b1c8305"
   },
   {
     "path": "external-sites.js",
@@ -126,18 +126,18 @@
   },
   {
     "path": "index.html",
-    "size": 10914,
-    "sha256": "99911310a7efa8cf52bb531db34e878ea8125c8303e6a77b09ccccbd3f901f47"
+    "size": 11474,
+    "sha256": "cf0cabe2ce92cdfe5ca24779d23e18a02055d4bec39d3969014e4500b3ee91ba"
   },
   {
     "path": "onboarding-x.js",
-    "size": 9623,
-    "sha256": "9124023c49fb26a186f0074f5515e590a7408ddf05af7a86243545611e302490"
+    "size": 10664,
+    "sha256": "61f9de8959138c954047ac0bdfae00e3880b624c8283d7d881a2e043150ec230"
   },
   {
     "path": "onboarding.css",
-    "size": 6186,
-    "sha256": "d842e4f796f200eaea3db7a7adfff5a2fe7fc94f6f7e184b8e0648b790a2e318"
+    "size": 6601,
+    "sha256": "b40082c62e7dfd04d89d39dc688a8ee9b8ee39737e742c569171735938ee4ccf"
   },
   {
     "path": "onboarding.html",
@@ -146,17 +146,17 @@
   },
   {
     "path": "onboarding.js",
-    "size": 6261,
-    "sha256": "295b0f29b5088837aefa88294103566d569c021d84c633085bb05eacb2f99216"
+    "size": 6642,
+    "sha256": "e21ddc4f16e4292708977b3d4843f9089eecbc9e96744672224dbc3dfb003406"
   },
   {
     "path": "star-posters.css",
-    "size": 20644,
-    "sha256": "97c26b1f0a0c72437d935cbc9c173b11d58998daff1426fe36891f85ef49def6"
+    "size": 22791,
+    "sha256": "4fe3b00f0e5ca0c487080e2f152383b0761e23f15bf68056d4dd172437ea2602"
   },
   {
     "path": "star-posters.js",
-    "size": 10009,
-    "sha256": "9ce452dc9ef13f32c46bd8c75c0790283730e8d07208ef9dd30ea32610d8d9ae"
+    "size": 11361,
+    "sha256": "0939d1c16bb40b897c3f2de4f463b1ab2ad020cba515c3aa4c93554c35b5304d"
   }
 ]

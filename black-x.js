@@ -11,25 +11,31 @@
   };
   const program=gl.createProgram();
   gl.attachShader(program,shader(gl.VERTEX_SHADER,`
-    attribute vec3 aPosition;
+    attribute vec3 aPosition, aNormal;
     uniform mat4 uModel, uProjection;
-    varying vec3 vWorld;
-    void main(){ vec4 p=uModel*vec4(aPosition,1.0); vWorld=p.xyz; p.z-=4.6; gl_Position=uProjection*p; }
+    varying vec3 vWorld, vNormal;
+    void main(){ vec4 p=uModel*vec4(aPosition,1.0); vWorld=p.xyz; vNormal=mat3(uModel)*aNormal; p.z-=4.6; gl_Position=uProjection*p; }
   `));
   gl.attachShader(program,shader(gl.FRAGMENT_SHADER,`
     precision mediump float;
     uniform float uHover;
-    varying vec3 vWorld;
+    varying vec3 vWorld, vNormal;
     void main(){
-      float strip=exp(-pow((vWorld.x + .65*vWorld.y - .18)/.33,2.0));
-      float reflection=uHover*(.018 + .20*strip);
-      gl_FragColor=vec4(vec3(reflection),1.0);
+      vec3 normal=normalize(vNormal);
+      vec3 light=normalize(vec3(-.45,.75,1.2));
+      vec3 view=normalize(vec3(0.0,0.0,4.6)-vWorld);
+      float diffuse=max(dot(normal,light),0.0);
+      float rim=max(dot(normal,normalize(vec3(.8,-.3,.4))),0.0);
+      float highlight=pow(max(dot(normal,normalize(light+view)),0.0),48.0);
+      float shade=.018+.10*diffuse+.035*rim+(.10+.08*uHover)*highlight;
+      gl_FragColor=vec4(vec3(shade),1.0);
     }
   `));
   gl.linkProgram(program);
   if(!gl.getProgramParameter(program,gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
   gl.useProgram(program);
   const positionLocation=gl.getAttribLocation(program,'aPosition');
+  const normalLocation=gl.getAttribLocation(program,'aNormal');
   const modelLocation=gl.getUniformLocation(program,'uModel');
   const projectionLocation=gl.getUniformLocation(program,'uProjection');
   const hoverLocation=gl.getUniformLocation(program,'uHover');
@@ -73,8 +79,17 @@
   function buildMesh(points) {
     const verts=[];
     const at=(i,z)=>[...points[i],z];
-    const face=(a,b,c)=>verts.push(...a,...b,...c);
-    const halfDepth=.009;
+    // Flat normals preserve the sharp front/side junction: no bevel or fillet.
+    const face=(a,b,c)=>{
+      const ab=b.map((v,i)=>v-a[i]),ac=c.map((v,i)=>v-a[i]);
+      const normal=[ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2],ab[0]*ac[1]-ab[1]*ac[0]];
+      const length=Math.hypot(...normal);
+      const n=normal.map(v=>v/length);
+      for(const vertex of [a,b,c])verts.push(...vertex,...n);
+    };
+    // The six SVG arms are approximately 39.3 units wide at the 1/100 mesh scale.
+    // Match extrusion to that width for an almost square arm cross-section.
+    const halfDepth=.1965;
     for(const [a,b,c] of triangulate(points)) {
       face(at(a,halfDepth),at(b,halfDepth),at(c,halfDepth));
       face(at(c,-halfDepth),at(b,-halfDepth),at(a,-halfDepth));
@@ -86,8 +101,9 @@
     }
     const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);
     gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(verts),gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(positionLocation);gl.vertexAttribPointer(positionLocation,3,gl.FLOAT,false,0,0);
-    vertexCount=verts.length/3;meshReady=true;
+    gl.enableVertexAttribArray(positionLocation);gl.vertexAttribPointer(positionLocation,3,gl.FLOAT,false,24,0);
+    gl.enableVertexAttribArray(normalLocation);gl.vertexAttribPointer(normalLocation,3,gl.FLOAT,false,24,12);
+    vertexCount=verts.length/6;meshReady=true;
   }
   function draw(){if(frame===null)frame=requestAnimationFrame(render);}
   function render(time) {
