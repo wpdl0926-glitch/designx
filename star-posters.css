@@ -375,3 +375,11 @@ body.is-onboarding .about-category,body.is-onboarding .about-category h1,body.is
 }
 
 :root { --exhibition-motion-duration:700ms; --exhibition-motion-easing:cubic-bezier(.45,0,.2,1); }
+
+/* Preserve the desktop preview's 70.25px gap from the large stars to the D.
+   The D starts 30.328 SVG units below the wordmark's viewBox top. */
+@media(min-width:651px) {
+  .x-stage .year-stars,.onboarding-stage .onboarding-stars {
+    top:calc(var(--brand-center-y) - 2.723016vw - max(2.4vw,26px) - 70.25px);
+  }
+}
