@@ -72,6 +72,21 @@ body.is-onboarding .x-stage,body.is-onboarding .external-footer { visibility:hid
 }
 .onboarding-brand-group .system-link,
 .onboarding-brand-group #onboarding-x-canvas { pointer-events:auto; }
+
+/* Reduce the complete navigation together and lift every screen state. */
+.x-stage .year-stars,.onboarding-stage .onboarding-stars {
+  transform-origin:50% 0;
+  transform:translateX(-50%) scale(.8);
+  translate:0 -30px;
+}
+.x-stage .year-stars.is-above-poster {
+  transform:translateX(-50%) scale(.64);
+  translate:0 calc(var(--stars-offset) - 30px);
+}
+@media(max-width:650px) {
+  .x-stage .year-stars,.onboarding-stage .onboarding-stars { transform:scale(.8); }
+  .x-stage .year-stars.is-above-poster { transform:scale(.64); }
+}
 @media(max-width:650px) {
   .onboarding-brand-group { transform-origin:50% var(--brand-center-y); }
 }
