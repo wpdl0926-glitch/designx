@@ -62,7 +62,7 @@
   const referenceHeight=stageHeight*(mobile?.5:.54);
   const panelTop=previousCenter-referenceHeight/2;
   const gap=mobile?16:24;
-  const restingTop=mobile?stageHeight*.7+50:stageHeight*.727;
+  const restingTop=parseFloat(getComputedStyle(stars).top);
   const targetTop=Math.max(16,panelTop-stars.offsetHeight-gap)+80;
   stars.style.setProperty('--stars-offset',(targetTop-restingTop)+'px');
   stars.classList.add('is-above-poster');
