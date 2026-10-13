@@ -51,7 +51,7 @@
     previousTime:null, frameTime:null, dragging:false
   };
   const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
-  const shouldAnimate=()=>inView&&!document.hidden&&!document.body.classList.contains('is-system')&&!motionPreference.matches;
+  const shouldAnimate=()=>inView&&!document.hidden&&!document.body.classList.contains('is-system')&&!document.body.classList.contains('is-onboarding')&&!motionPreference.matches;
   function cross(a, b, c) { return (b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]); }
   function triangulate(points) {
     const remaining = points.map((_, i) => i);
@@ -151,7 +151,15 @@
     if(e.key==='ArrowUp')motion.rotationX-=.15;if(e.key==='ArrowDown')motion.rotationX+=.15;
     if(e.key==='Home'){motion.rotationX=-.2;motion.rotationY=-.32;motion.rotationZ=-.025;}draw();
   });
-  const restart=()=>{previousTime=null;draw();};
+  const restart=()=>{
+    previousTime=null;
+    const bounds=canvas.getBoundingClientRect();
+    inView=bounds.width>0&&bounds.height>0&&bounds.bottom>0&&bounds.top<innerHeight;
+    draw();
+  };
+  window.addEventListener('designx:main-opened',restart);
+  window.addEventListener('designx:main-visible',restart);
+  window.addEventListener('designx:onboarding-opened',restart);
   window.addEventListener('designx:system-opened',restart);
   window.addEventListener('designx:system-closed',restart);
   new ResizeObserver(draw).observe(stage);
