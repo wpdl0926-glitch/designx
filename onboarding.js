@@ -49,6 +49,7 @@
   window.dispatchEvent(new CustomEvent('designx:main-opened',{detail:{exhibition}}));
   if(!reduced.matches){animation=panel.animate([{opacity:1},{opacity:0}],{duration:700,easing:'ease-in-out'});await animation.finished.catch(()=>{});}
   panel.hidden=true;panel.inert=false;busy=false;resetIdle();
+  window.dispatchEvent(new Event('designx:main-visible'));
  }
  async function showOnboarding() {
   if(busy||isOnboarding)return;busy=true;isOnboarding=true;clearTimeout(idleTimer);
@@ -58,6 +59,7 @@
   if(!document.querySelector('.about-category').hidden)closeAbout.click();
   const returningFromPoster=main.classList.contains('has-exhibition');
   panel.hidden=false;panel.inert=false;main.inert=true;
+  window.dispatchEvent(new Event('designx:onboarding-opened'));
   if(!reduced.matches){
    const easing='cubic-bezier(.45,0,.2,1)';
    animation=panel.animate([{opacity:0},{opacity:1}],{duration:900,easing});
@@ -67,7 +69,7 @@
    ],{duration:1000,easing});
    await Promise.all([animation.finished.catch(()=>{}),reveal.finished.catch(()=>{})]);
   }
-  document.body.classList.add('is-onboarding');busy=false;enteredAt=performance.now();scrollAmount=0;photos();
+  document.body.classList.add('is-onboarding');window.dispatchEvent(new Event('designx:onboarding-opened'));busy=false;enteredAt=performance.now();scrollAmount=0;photos();
  }
  panel.addEventListener('pointerdown',event=>{press={x:event.clientX,y:event.clientY};dragged=false;});
  panel.addEventListener('pointermove',event=>{if(press&&Math.hypot(event.clientX-press.x,event.clientY-press.y)>8)dragged=true;});
