@@ -151,7 +151,14 @@
     if(e.key==='ArrowUp')motion.rotationX-=.15;if(e.key==='ArrowDown')motion.rotationX+=.15;
     if(e.key==='Home'){motion.rotationX=-.2;motion.rotationY=-.32;motion.rotationZ=-.025;}draw();
   });
-  const restart=()=>{previousTime=null;draw();};
+  const restart=()=>{
+    previousTime=null;
+    const bounds=canvas.getBoundingClientRect();
+    inView=bounds.width>0&&bounds.height>0&&bounds.bottom>0&&bounds.top<innerHeight;
+    draw();
+  };
+  window.addEventListener('designx:main-opened',restart);
+  window.addEventListener('designx:onboarding-opened',restart);
   window.addEventListener('designx:system-opened',restart);
   window.addEventListener('designx:system-closed',restart);
   new ResizeObserver(draw).observe(stage);
