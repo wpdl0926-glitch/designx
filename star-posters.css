@@ -100,7 +100,7 @@ body { overflow:hidden; }
 .about-category { position:fixed; left:73.082011%; right:0; top:0; bottom:0; z-index:60; background:rgba(255,255,255,.5); }
 .about-category[hidden] { display:none; }
 .about-back { position:absolute; right:48px; top:64px; width:26px; height:26px; border:0; padding:0; background:transparent; color:#000; font:16.5px/1 Arial,sans-serif; cursor:pointer; display:grid; place-items:center; }
-.about-back:focus-visible { outline:2px solid #336cff; outline-offset:2px; }
+.about-back:focus,.about-back:focus-visible,.system-link:focus,.system-link:focus-visible { outline:none; }
 .about-content { position:static; width:100%; padding:130px 48px 38px; }
 .about-content h1 { font-family:"Avenir Next",Avenir,sans-serif; font-size:30px; font-weight:500; letter-spacing:normal; margin:0 0 24px; }
 .about-content p { margin:0; }
